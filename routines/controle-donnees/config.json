@@ -1,6 +1,6 @@
 {
   "nom": "Contrôle des données",
-  "planification": "lundi et jeudi, 7 h 00 (heure de Paris)",
+  "planification": "lundi et jeudi à 5 h UTC (6 h à Paris en hiver, 7 h en été)",
   "destinataires": ["jcpoirot@dimake.io"],
   "destinataireTest": "jcpoirot@dimake.io"
 }

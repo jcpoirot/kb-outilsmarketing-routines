@@ -11,7 +11,7 @@ Dépôt **privé** (chiffres internes), branche `main` seule : rien n'y est dép
 
 | Routine | Dossier | Planification | Contenu |
 |---|---|---|---|
-| Contrôle des données | `routines/controle-donnees/` | lundi et jeudi, 7 h (Paris) | offre diffusée B2C, problèmes de données des Apps 1 et 5 par regroupement d'agences, variations, liens vers les listes |
+| Contrôle des données | `routines/controle-donnees/` | lundi et jeudi, 5 h UTC (6 h à Paris en hiver, 7 h en été) | offre diffusée B2C, problèmes de données des Apps 1 et 5 par regroupement d'agences, variations, liens vers les listes |
 
 Chaque routine a son dossier : `ROUTINE.md` (le prompt suivi par la routine cloud),
 `config.json` (nom, destinataires, adresse de test), ses scripts.

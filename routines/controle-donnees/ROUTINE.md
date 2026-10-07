@@ -1,4 +1,4 @@
-# Routine « Contrôle des données » (lundi et jeudi matin)
+# Routine « Contrôle des données » (lundi et jeudi, 5 h UTC)
 
 Mail aux directeurs : offre diffusée (programmes et lots B2C, par état d'avancement et par
 regroupement d'agences) et problèmes de données des Apps 1 et 5, par regroupement, avec la

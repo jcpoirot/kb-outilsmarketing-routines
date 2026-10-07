@@ -1,0 +1,15 @@
+{
+  "name": "kb-outilsmarketing-routines",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Routines Claude des outils marketing : analyses planifiées et mails de synthèse",
+  "scripts": {
+    "controle-donnees:analyse": "node routines/controle-donnees/analyse.js",
+    "controle-donnees:email": "node routines/controle-donnees/email.js",
+    "parite": "node outils/parite-controle-donnees.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

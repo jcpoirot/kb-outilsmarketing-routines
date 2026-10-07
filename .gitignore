@@ -1,0 +1,11 @@
+# Sorties de test et cache local (jamais versionnés)
+out/
+
+# Corps des mails : regénérés à chaque envoi, seuls le rapport et la synthèse sont historisés
+historique/**/*.email.html
+historique/**/*.email.json
+
+node_modules/
+.vscode/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,6 @@
+{
+  "nom": "Contrôle des données",
+  "planification": "lundi et jeudi, 7 h 00 (heure de Paris)",
+  "destinataires": ["jcpoirot@dimake.io"],
+  "destinataireTest": "jcpoirot@dimake.io"
+}

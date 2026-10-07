@@ -65,12 +65,15 @@ function kpi(label, value, d) {
         + `${v ? ` <span style="font-size:14px">${v}</span>` : ''}</div></td>`;
 }
 
-function diffusionHtml(report) {
+function diffusionTiles(report) {
     const d = report.diffusion;
-    const tiles = `<table role="presentation" cellpadding="0" cellspacing="8" style="width:100%;border-collapse:separate"><tr>`
+    return `<table role="presentation" cellpadding="0" cellspacing="8" style="width:100%;border-collapse:separate"><tr>`
         + kpi('Programmes diffusés', d.programmes, d.variation.programmes)
         + kpi('Lots diffusés', d.lots, d.variation.lots) + '</tr></table>';
+}
 
+function repartitions(report) {
+    const d = report.diffusion;
     const pv = (n, dv) => `${fmt(n)}${variation(dv) ? ` <span style="font-size:12px">${variation(dv)}</span>` : ''}`;
     const statuts = table(th('État d\'avancement') + th('Programmes', 'right') + th('Lots', 'right'),
         d.parStatut.map(s => `<tr>${td(esc(s.statut))}${td(pv(s.programmes, s.variation.programmes), 'right')}${td(pv(s.lots, s.variation.lots), 'right')}</tr>`));
@@ -79,9 +82,8 @@ function diffusionHtml(report) {
             const r = d.parRegroupement[rg];
             return `<tr>${td(rgLabel(rg))}${td(pv(r.programmes, r.variation.programmes), 'right')}${td(pv(r.lots, r.variation.lots), 'right')}</tr>`;
         }));
-    return tiles
-        + `<h3 style="font-size:14px;margin:16px 0 4px">Répartition par état d'avancement</h3>${statuts}`
-        + `<h3 style="font-size:14px;margin:16px 0 4px">Répartition par regroupement</h3>${regs}`;
+    return `<h3 style="font-size:14px;margin:8px 0 4px">Par état d'avancement</h3>${statuts}`
+        + `<h3 style="font-size:14px;margin:16px 0 4px">Par regroupement</h3>${regs}`;
 }
 
 function perimetres(report) {
@@ -108,18 +110,15 @@ function buildHtml(report, synthese) {
 
     if (synthese) parts.push(section('Synthèse', markdownToHtml(synthese)));
 
-    parts.push(section('Offre diffusée', diffusionHtml(report), 'Programmes et lots diffusés en B2C'));
-
-    const qualite = report.indicateurs.filter(i => !i.signal);
-    const signaux = report.indicateurs.filter(i => i.signal);
-    parts.push(section('Problèmes de données', matrice(report, qualite),
+    // Ordre voulu : les deux chiffres de l'offre, les problèmes de données, puis le détail de l'offre.
+    parts.push(section('Offre diffusée', diffusionTiles(report), 'Programmes et lots diffusés en B2C'));
+    parts.push(section('Problèmes de données', matrice(report, report.indicateurs),
         'Chaque chiffre ouvre la liste dans outilsMarketing, filtrée sur le regroupement'));
-    parts.push(section('Signaux commerciaux', matrice(report, signaux),
-        'Stock ou programmes dont la diffusion est à revoir'));
+    parts.push(section("Répartition de l'offre diffusée", repartitions(report)));
 
     parts.push(section('Périmètres', perimetres(report)));
     parts.push(`<p style="margin:24px 0 0;font-size:11px;color:${COLORS.muted}">Mail généré automatiquement par la routine « ${esc(config.nom)} » `
-        + `à partir des extractions du jour (${fmt(report.sources.programs)} programmes, ${fmt(report.sources.lots)} lots, ${fmt(report.sources.otherUnits)} autres lots). `
+        + `à partir des extractions du jour (${fmt(report.sources.programs)} programmes et ${fmt(report.sources.lots)} lots). `
         + `${link(SITE, 'outilsmarketing.kaufmanbroad.fr')}</p>`);
     return page(parts.join('\n'));
 }

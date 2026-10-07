@@ -28,10 +28,6 @@ const hasInvestmentScheme = prog => {
     const t = (prog?.taxIncentives || '').toLowerCase();
     return /\[patrimonial\]/.test(t) || /\[lmnp\]/.test(t);
 };
-const SOLD_STATES = new Set(['vendu', 'livre']);
-const isLotSold = lot => SOLD_STATES.has(norm(lot.unitStatePPM));
-const isVirtualUnit = lot => lot.virtualUnit === '1';
-const isGridUnvalidated = lot => lot.ppmGridValidation === '0';
 
 function parseFeesByTypology(raw) {
     if (!raw) return [];
@@ -79,50 +75,21 @@ function countBy(items, keyFn) {
     return out;
 }
 
-export function computeIndicateurs({ programs, lots, otherUnits }) {
+export function computeIndicateurs({ programs, lots }) {
     const programsMap = {};
     programs.forEach(p => { programsMap[p.idProgram] = p; });
 
-    const childrenByParent = {};
-    programs.forEach(p => {
-        const parent = (p.parentOperationCode || '').trim();
-        if (!parent || parent === p.idProgram) return;
-        (childrenByParent[parent] ||= []).push(p.idProgram);
-    });
-
+    // Lots diffusés B2C / B2B par programme (lots.csv seul), comme lotCountsByProg dans l'app.
     const lotCountsByProg = {};
-    const lotsByProg = {};
     lots.forEach(lot => {
         const code = lot.operationCode;
         if (!code) return;
-        const c = lotCountsByProg[code] ||= { b2c: 0, b2b: 0, total: 0, remaining: 0 };
-        (lotsByProg[code] ||= []).push(lot);
-        c.total++;
+        const c = lotCountsByProg[code] ||= { b2c: 0, b2b: 0 };
         if (lot.isUnitPublishedB2C === '1') c.b2c++;
         if (lot.isUnitPublishedB2B === '1') c.b2b++;
-        if (!isLotSold(lot)) c.remaining++;
-    });
-    const otherCountsByProg = {};
-    const otherLotsByProg = {};
-    otherUnits.forEach(unit => {
-        const code = unit.operationCode;
-        if (!code) return;
-        const c = otherCountsByProg[code] ||= { total: 0, remaining: 0 };
-        (otherLotsByProg[code] ||= []).push(unit);
-        c.total++;
-        if (!isLotSold(unit)) c.remaining++;
     });
 
-    const progStock = id => {
-        const l = lotCountsByProg[id] || { total: 0, remaining: 0 };
-        const o = otherCountsByProg[id] || { total: 0, remaining: 0 };
-        return { total: l.total + o.total, remaining: l.remaining + o.remaining };
-    };
-    const childrenWithStock = id => (childrenByParent[id] || [])
-        .filter(code => !isArchived(programsMap[code]))
-        .filter(code => [...(lotsByProg[code] || []), ...(otherLotsByProg[code] || [])].some(l => !isLotSold(l)));
-
-    // Statut programme par défaut (onglets 1 à 6) : tout sauf Avant-première, « sans
+    // Statut programme par défaut (onglets 1 à 4) : tout sauf Avant-première, « sans
     // statut » compris s'il existe dans les données.
     const statusOk = prog => norm(prog?.programStatus) !== 'avantpremiere';
 
@@ -139,7 +106,7 @@ export function computeIndicateurs({ programs, lots, otherUnits }) {
         return isRentMissing(lot.marketMonthlyRent) || isRentMissing(lot.lmnpMonthlyRent);
     });
 
-    // Onglets 2, 4, 5 — getFilteredPrograms (programme diffusé B2C par défaut).
+    // Onglets 2 et 4 — getFilteredPrograms (programme diffusé B2C par défaut).
     const progsFiltres = programs.filter(p => !isArchived(p) && p.isProgramPublishedB2C === '1' && statusOk(p));
 
     const sansCharges = progsFiltres.filter(p => {
@@ -153,23 +120,6 @@ export function computeIndicateurs({ programs, lots, otherUnits }) {
         if (!hasAllZeroFees(p)) return false;
         if (p.isProgramPublishedB2B !== '1') return false;
         return (lotCountsByProg[p.idProgram] || { b2b: 0 }).b2b > 0;
-    });
-
-    // Onglet 5, seuil par défaut « Aucun lot restant ».
-    const ecoules = progsFiltres.filter(p => {
-        const c = progStock(p.idProgram);
-        if (c.total === 0) return childrenWithStock(p.idProgram).length > 0;
-        return c.remaining === 0;
-    });
-
-    // Onglet 6 — disponibilité « Libre » seule, toutes familles, toutes causes. Ignore le
-    // filtre « Diffusion Programme ».
-    const nonDiffuses = [...lots, ...otherUnits].filter(lot => {
-        if (norm(lot.unitStatePPM) !== 'libre') return false;
-        if (isVirtualUnit(lot) || isGridUnvalidated(lot)) return false;
-        const prog = programsMap[lot.operationCode] || {};
-        if (isArchived(prog) || !statusOk(prog)) return false;
-        return prog.isProgramPublishedB2C !== '1' || lot.isUnitPublishedB2C !== '1';
     });
 
     // Onglet 7 — lots virtuels inclus, Avant-première incluse (défauts de l'onglet).
@@ -215,16 +165,6 @@ export function computeIndicateurs({ programs, lots, otherUnits }) {
             cle: 'sansHonoraires', libelle: 'Programmes sans honoraires prescripteurs', unite: 'programme', slug: 'honoraires',
             perimetre: 'Programmes diffusés B2C et B2B ayant des lots B2B, hors Avant-première',
             parRegroupement: countBy(sansHonoraires, p => p.agencyRegions)
-        },
-        {
-            cle: 'ecoules', libelle: 'Programmes écoulés encore diffusés', unite: 'programme', slug: 'ecoules', signal: true,
-            perimetre: 'Programmes diffusés B2C sans aucun lot restant (parkings et commerces compris), hors Avant-première',
-            parRegroupement: countBy(ecoules, p => p.agencyRegions)
-        },
-        {
-            cle: 'nonDiffuses', libelle: 'Lots libres non diffusés', unite: 'lot', slug: 'non-diffuses', signal: true,
-            perimetre: 'Lots « Libre » dont le lot ou le programme n\'est pas diffusé B2C, hors lots virtuels, grille non validée et Avant-première',
-            parRegroupement: countBy(nonDiffuses, l => l.agencyRegions)
         }
     ];
     for (const ind of indicateurs) {

@@ -50,8 +50,7 @@ Les fichiers sont dans `historique/controle-donnees/` en prod, `out/controle-don
      qui se distingue, évolution notable de l'offre diffusée (programmes ou lots).
    - Règles : ne rien affirmer qui ne figure pas dans le rapport ; ne pas recopier les tableaux
      du mail ; nommer un regroupement par sa partie avant le `|` (« Ouest ») ; premier rapport
-     (`datePrecedente` nul) : décrire l'état sans parler d'évolution. « Programmes écoulés » et
-     « Lots libres non diffusés » sont des signaux commerciaux, pas des erreurs de saisie.
+     (`datePrecedente` nul) : décrire l'état sans parler d'évolution.
 
 4. Lancer `npm run controle-donnees:email -- FLAG`. Il écrit `AAAA-MM-JJ.email.html` et
    `AAAA-MM-JJ.email.json` (`to`, `subject`, `htmlFile`).

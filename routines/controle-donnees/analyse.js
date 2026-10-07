@@ -37,7 +37,7 @@ function withDiff(data, prev) {
 
 const ctx = routineContext(ROUTINE);
 const csv = await loadCsvs('controleDonnees',
-    { programs: 'programsUrl', lots: 'lotsUrl', otherUnits: 'otherUnitsUrl' }, { cache: ctx.cache });
+    { programs: 'programsUrl', lots: 'lotsUrl' }, { cache: ctx.cache });
 const prev = await previousReport(ctx);
 const data = withDiff(computeIndicateurs(csv), prev);
 
@@ -47,7 +47,7 @@ const report = {
     mode: ctx.mode,
     genereLe: new Date().toISOString(),
     datePrecedente: prev?.date || null,
-    sources: { programs: csv.programs.length, lots: csv.lots.length, otherUnits: csv.otherUnits.length },
+    sources: { programs: csv.programs.length, lots: csv.lots.length },
     ...data
 };
 

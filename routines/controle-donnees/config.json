@@ -1,6 +1,13 @@
 {
   "nom": "Contrôle des données",
   "planification": "lundi et jeudi à 5 h UTC (6 h à Paris en hiver, 7 h en été)",
-  "destinataires": ["jcpoirot@dimake.io"],
+  "destinataires": [
+    "wtruchy@ketb.com",
+    "cdecarne.consultant-externe@ketb.com",
+    "AKALTWASSER@ketb.com",
+    "VMELLIER@ketb.com",
+    "MCONDROYER@ketb.com",
+    "jcpoirot.consultant-externe@ketb.com"
+  ],
   "destinataireTest": "jcpoirot@dimake.io"
 }

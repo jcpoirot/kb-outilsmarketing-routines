@@ -206,21 +206,37 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
         parentOf[p.idProgram] = parent;
         (children[parent] ||= []).push(p.idProgram);
     }
-    const rootOf = id => {
-        const seen = new Set([id]);
-        while (parentOf[id] && !seen.has(parentOf[id])) { id = parentOf[id]; seen.add(id); }
-        return id;
-    };
+    // Famille : programmes reliés par parentOperationCode (racine et tous ses descendants) OU par
+    // le même code d'étude (studyCode de programsDescriptions.csv) — c'est la même opération, même
+    // sans parent déclaré. Composantes connexes de ces deux liens.
+    const link = {};
+    const connect = (a, b) => { (link[a] ||= new Set()).add(b); (link[b] ||= new Set()).add(a); };
+    for (const [child, parent] of Object.entries(parentOf)) connect(child, parent);
+    const byStudy = {};
+    for (const d of programsDescriptions) {
+        const sc = (d.studyCode || '').trim();
+        if (sc) (byStudy[sc] ||= []).push(d.idProgram);
+    }
+    for (const ids of Object.values(byStudy)) for (const other of ids.slice(1)) connect(ids[0], other);
+    const familyCache = {};
     const familyOf = id => {
-        const root = rootOf(id), out = [], todo = [root], seen = new Set();
+        if (familyCache[id]) return familyCache[id];
+        const out = [], todo = [id], seen = new Set();
         while (todo.length) {
             const c = todo.shift();
             if (seen.has(c)) continue;
             seen.add(c); out.push(c);
-            todo.push(...(children[c] || []));
+            todo.push(...(link[c] || []));
         }
-        return { racine: root, membres: out };
+        out.sort((a, b) => a.localeCompare(b, 'fr', { numeric: true }));
+        const fam = { membres: out };
+        for (const m of out) familyCache[m] = fam;
+        return fam;
     };
+    // « Parent » d'un groupe de programmes de la même famille au descriptif identique : celui qui
+    // n'a pas de parent déclaré (la racine), sinon le plus petit code. Seul son descriptif est jugé.
+    const porteurOf = ids => [...ids].sort((a, b) =>
+        (parentOf[a] ? 1 : 0) - (parentOf[b] ? 1 : 0) || a.localeCompare(b, 'fr', { numeric: true }))[0];
 
     const lotsByProg = {}, othersByProg = {}, names = {};
     for (const l of lots) {
@@ -258,7 +274,11 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             ? { titre: htmlToText(d.merchandisingTitle) || null, description: htmlToText(d.merchandisingDescription) || null }
             : null;
         const parent = parentOf[id] || ((d.parentOperationCode || '').trim() !== id ? (d.parentOperationCode || '').trim() : '') || null;
-        const copies = (byText[texte] || []).filter(o => o !== id);
+        const identiques = (byText[texte] || []).filter(o => o !== id);
+        const memeFamille = identiques.filter(o => fam.membres.includes(o));
+        // Descriptif identique à celui d'un programme de la famille : jugé une seule fois, sur le parent.
+        const porteur = memeFamille.length ? porteurOf([id, ...memeFamille]) : id;
+        const copies = identiques.filter(o => !fam.membres.includes(o));
         const offre = {
             ref: p.offerRef || null,
             debut: p.offerStartDate || null,
@@ -281,8 +301,11 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             famille: fam.membres.length > 1 ? fam.membres : [],
             texte,
             texteVide: !texte,
-            texteIdentiqueParent: !!(parent && texte && textes[parent] === texte),
-            texteIdentiqueA: copies.map(o => ({ idProgram: o, memeFamille: fam.membres.includes(o) })),
+            // Descriptif repris du parent de la famille : il n'est pas jugé ici (seul celui du
+            // parent l'est) ; l'événement du programme, s'il en a un, l'est toujours.
+            descriptifRepris: porteur !== id ? porteur : null,
+            // Texte identique à celui d'un programme d'une AUTRE famille : copie possible.
+            texteIdentiqueA: copies.map(o => ({ idProgram: o, memeFamille: false })),
             evenement,
             offre,
             // Sans stock : aucun lot diffusé disponible dans la famille, logements (virtuels compris)
@@ -294,10 +317,13 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
         };
         dossier.hash = createHash('sha256').update(JSON.stringify({
             texte, evenement, ville: dossier.ville, statut: dossier.statutProgramme, parent, offre,
+            descriptifRepris: dossier.descriptifRepris,
             texteIdentiqueA: dossier.texteIdentiqueA, stock, stockFamille
         })).digest('hex').slice(0, 16);
         const prev = prevById[id];
-        dossier.aRelire = !(prev && prev.hash === dossier.hash);
+        // Rien à juger : descriptif repris du parent et pas d'événement.
+        dossier.rienAJuger = !!dossier.descriptifRepris && !evenement;
+        dossier.aRelire = !dossier.rienAJuger && !(prev && prev.hash === dossier.hash);
         return dossier;
     });
 

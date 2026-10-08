@@ -112,7 +112,7 @@ textes sont analysés, avec les mêmes règles : le **descriptif**, le **titre �
 sous le descriptif quand ils existent). Le dossier donne, pour chaque programme, le stock
 **diffusé** (lot et programme diffusés B2C), **disponible** (Libre, Option, vide) et
 **commercialisable** (hors virtuels et hors grille non validée) de toute sa famille — la racine
-(on remonte les parents) et tous ses descendants — en logements et en autres lots, ses lots
+(on remonte les parents) et tous ses descendants, plus les programmes de même code d'étude — en logements et en autres lots, ses lots
 virtuels diffusés à part, l'offre du programme et sa validité au jour du rapport. **Seuls les
 lots diffusés comptent** : un lot disponible mais non diffusé n'existe pas pour ce contrôle.
 La ligne « logements de la résidence, tous états » ne sert qu'à juger un nombre total de
@@ -120,7 +120,8 @@ logements annoncé (« résidence de 40 appartements »).
 
 **Ne pas signaler** : les généralités marketing (cadre de vie, transports, prestations,
 architecture) ; l'absence de nom (`operationName` vient de lots.csv) ou un nom générique
-(« Nouvelle résidence », « Prochainement »…), qui est normal ; un lot non diffusé ; le statut Backbone, qui
+(« Nouvelle résidence », « Prochainement »…), qui est normal ; un descriptif marqué « identique à
+celui de X, parent de la famille » : il n'est jugé que sur X (programmes d'une même opération) ; un lot non diffusé ; le statut Backbone, qui
 n'est pas pris en compte ; un enfant au descriptif vide ou repris du parent si la famille a le
 stock annoncé ; une mention TVA 5,5 % dès qu'un lot disponible de la famille a une TVA réduite ;
 un programme en avant-première dont le stock n'est fait que de lots virtuels (`VIRTUELS SEULS`),
@@ -150,7 +151,7 @@ lots, virtuels compris) : `sansStock: true`.
 | `quantite` | nombre de logements disponibles ou total annoncé faux (comparer à `logements au total` et au stock) | moyenne |
 | `surface` | surface annoncée pour un lot ou une typologie disponible hors de la plage du stock | moyenne |
 | `statut` | livraison, travaux, lancement ou événement (portes ouvertes…) dépassés au jour du rapport, ou contraires au statut programme | moyenne (événement passé : faible) |
-| `copie` | texte identique à celui d'un programme d'une **autre** famille, ou nom d'un autre programme dans le texte | moyenne |
+| `copie` | texte identique à celui d'un programme d'une **autre** famille (ligne « Texte identique à » du dossier), ou nom d'un autre programme dans le texte. Jamais entre programmes d'une même famille | moyenne |
 | `prix_aberrant` | prix au m² aberrant dans la grille (ligne « prix aberrants » du dossier) : donnée à corriger | faible |
 
 Champs d'une anomalie : `champ` (`descriptif`, `titre événement` ou `description événement` :

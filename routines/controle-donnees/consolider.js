@@ -51,7 +51,10 @@ let repris = 0;
 for (const p of dossier.programmes) {
     const id = String(p.idProgram);
     let e;
-    if (p.aRelire) {
+    if (p.rienAJuger) {
+        // Descriptif repris du parent de la famille, sans événement : jugé sur le parent seul.
+        e = { idProgram: id, sansStock: p.sansStock, parleDuStock: false, anomalies: [], verdictDu: ctx.date };
+    } else if (p.aRelire) {
         e = relus[id];
         if (!e) { erreurs.push(`${id} : à relire, absent des fichiers ${prefix}*.json`); continue; }
         e = { ...e, verdictDu: ctx.date };

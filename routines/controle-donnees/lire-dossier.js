@@ -53,7 +53,9 @@ for (const p of aRelire.slice((numero - 1) * TAILLE, numero * TAILLE)) {
     if (p.texteIdentiqueA.length) {
         out.push(`Texte identique à : ${p.texteIdentiqueA.map(c => `${c.idProgram}${c.memeFamille ? ' (même famille)' : ' (AUTRE famille)'}`).join(', ')}`);
     }
-    out.push(p.texteVide ? 'Descriptif : (vide)' : `Descriptif${p.texteIdentiqueParent ? ' (identique au parent)' : ''} :\n${p.texte}`);
+    out.push(p.descriptifRepris
+        ? `Descriptif : identique à celui de ${p.descriptifRepris}, parent de la famille — jugé sur ${p.descriptifRepris} seulement, ne pas le juger ici`
+        : p.texteVide ? 'Descriptif : (vide)' : `Descriptif :\n${p.texte}`);
     if (p.evenement) {
         out.push(`Titre événement : ${p.evenement.titre || '(vide)'}`,
             `Description événement :\n${p.evenement.description || '(vide)'}`);

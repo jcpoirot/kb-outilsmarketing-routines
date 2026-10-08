@@ -68,6 +68,9 @@ console.log(`Référence : ${report.datePrecedente || 'aucune (premier rapport)'
 console.log(`Diffusés : ${data.diffusion.programmes} programmes${sign(data.diffusion.variation.programmes)}, ${data.diffusion.lots} lots${sign(data.diffusion.variation.lots)}`);
 for (const ind of data.indicateurs) console.log(`- ${ind.libelle} : ${ind.total}${sign(ind.variation)}`);
 const aRelire = dossier.programmes.filter(p => p.aRelire).length;
-console.log(`Descriptifs : ${dossier.programmes.length} programmes, ${aRelire} à relire (${dossier.programmes.length - aRelire} repris du ${dossier.previousDate || '—'})`);
+const rien = dossier.programmes.filter(p => p.rienAJuger).length;
+console.log(`Descriptifs : ${dossier.programmes.length} programmes, ${aRelire} à relire, `
+    + `${dossier.programmes.length - aRelire - rien} repris du ${dossier.previousDate || '—'}, `
+    + `${rien} au descriptif repris du parent (rien à juger)`);
 console.log(`Rapport : ${ctx.file('json')}`);
 console.log(`Dossier des descriptifs : ${ctx.file('descriptifs.dossier.json')}`);

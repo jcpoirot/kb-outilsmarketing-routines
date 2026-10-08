@@ -66,7 +66,7 @@ for (const p of dossier.programmes) {
     programmes.push({
         idProgram: id, hash: p.hash, verdictDu: e.verdictDu || ctx.date, sansStock, parleDuStock,
         anomalies: sansStock && !parleDuStock ? [] : (e.anomalies || []).map(a => ({
-            type: a.type, severite: a.severite, extrait: a.extrait, constat: a.constat, commentaire: a.commentaire || ''
+            champ: a.champ || 'descriptif', type: a.type, severite: a.severite, extrait: a.extrait, constat: a.constat, commentaire: a.commentaire || ''
         }))
     });
 }
@@ -144,7 +144,8 @@ const rows = lignes.map(({ e, a, p }) => [
     asNumber(p.parent),
     p.statutProgramme,
     a.type,
-    a.extrait,
+    // L'extrait est précédé de son texte d'origine quand il ne vient pas du descriptif.
+    ['descriptif', 'stock'].includes(a.champ || 'descriptif') ? a.extrait : `${a.champ[0].toUpperCase()}${a.champ.slice(1)} : ${a.extrait}`,
     (p.famille.length ? 'Famille : ' : '') + stockText(p.stockFamille),
     a.constat,
     a.commentaire

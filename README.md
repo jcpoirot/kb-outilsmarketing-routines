@@ -67,8 +67,8 @@ message qui le dit.
 
 ### Descriptifs et stock
 
-Cohérence entre le descriptif de chaque programme diffusé B2C et le stock disponible de sa
-famille (parent et enfants). Règles : section « Règles des descriptifs » de
+Cohérence entre les textes de chaque programme diffusé B2C (descriptif, titre et description de
+l'événement) et le stock **diffusé** disponible de sa famille (parent et enfants). Règles : section « Règles des descriptifs » de
 `routines/controle-donnees/ROUTINE.md` ; notion « Cohérence descriptif / stock » de
 `outilsMarketing/.claude/rules/ontologie.md`.
 

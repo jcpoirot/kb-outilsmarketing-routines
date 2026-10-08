@@ -60,7 +60,7 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
      texte nettoyé, stock de la famille, offre, statut). Ne pas lire le JSON du dossier en entier.
    - Pour chaque lot `n`, écrire `AAAA-MM-JJ.descriptifs.relus-<n>.json` (même dossier que le
      rapport) : un tableau avec **une entrée par programme du lot**, même sans anomalie :
-     `{"idProgram": "72101", "sansStock": false, "parleDuStock": false, "anomalies": [{"type": "typologie", "severite": "faible", "extrait": "…", "constat": "…", "commentaire": "…"}]}`.
+     `{"idProgram": "72101", "sansStock": false, "parleDuStock": false, "anomalies": [{"champ": "descriptif", "type": "typologie", "severite": "faible", "extrait": "…", "constat": "…", "commentaire": "…"}]}`.
    - Puis lancer `npm run controle-donnees:descriptifs -- FLAG`. Il vérifie que chaque programme
      à relire a son verdict (sinon il liste ceux qui manquent : les compléter et relancer), écrit
      `AAAA-MM-JJ.descriptifs.json`, l'Excel `AAAA-MM-JJ.descriptifs.xlsx` et les agrégats dans
@@ -106,21 +106,28 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
 
 ## Règles des descriptifs
 
-Ce qu'on cherche : un descriptif qui annonce ce que le **stock de la famille** ne porte pas. Le
-dossier donne, pour chaque programme, le stock **disponible** (Libre, Option, vide) et
+Ce qu'on cherche : un texte qui annonce ce que le **stock de la famille** ne porte pas. Trois
+textes sont analysés, avec les mêmes règles : le **descriptif**, le **titre événement** et la
+**description événement** (champs `merchandisingTitle` / `merchandisingDescription`, affichés
+sous le descriptif quand ils existent). Le dossier donne, pour chaque programme, le stock
+**diffusé** (lot et programme diffusés B2C), **disponible** (Libre, Option, vide) et
 **commercialisable** (hors virtuels et hors grille non validée) de toute sa famille — la racine
 (on remonte les parents) et tous ses descendants — en logements et en autres lots, ses lots
-virtuels à part, l'offre du programme et sa validité au jour du rapport.
+virtuels diffusés à part, l'offre du programme et sa validité au jour du rapport. **Seuls les
+lots diffusés comptent** : un lot disponible mais non diffusé n'existe pas pour ce contrôle.
+La ligne « logements de la résidence, tous états » ne sert qu'à juger un nombre total de
+logements annoncé (« résidence de 40 appartements »).
 
 **Ne pas signaler** : les généralités marketing (cadre de vie, transports, prestations,
-architecture) ; l'absence de nom (`operationName` vient de lots.csv) ; le statut Backbone, qui
+architecture) ; l'absence de nom (`operationName` vient de lots.csv) ou un nom générique
+(« Nouvelle résidence », « Prochainement »…), qui est normal ; un lot non diffusé ; le statut Backbone, qui
 n'est pas pris en compte ; un enfant au descriptif vide ou repris du parent si la famille a le
 stock annoncé ; une mention TVA 5,5 % dès qu'un lot disponible de la famille a une TVA réduite ;
 un programme en avant-première dont le stock n'est fait que de lots virtuels (`VIRTUELS SEULS`),
 sauf si le texte contredit les typologies de ces lots virtuels.
 
-**Programme `SANS STOCK`** (rien de disponible dans la famille, logements comme autres lots,
-virtuels compris) : `sansStock: true`.
+**Programme `SANS STOCK`** (aucun lot diffusé disponible dans la famille, logements comme autres
+lots, virtuels compris) : `sansStock: true`.
 - Le texte ne parle pas de stock (il décrit seulement la résidence, ses typologies d'origine
   — « déclinés du 2 au 4 pièces » —, ou il est vide) : `parleDuStock: false`, `anomalies: []`.
   Rien n'est signalé.
@@ -146,6 +153,7 @@ virtuels compris) : `sansStock: true`.
 | `copie` | texte identique à celui d'un programme d'une **autre** famille, ou nom d'un autre programme dans le texte | moyenne |
 | `prix_aberrant` | prix au m² aberrant dans la grille (ligne « prix aberrants » du dossier) : donnée à corriger | faible |
 
-Champs d'une anomalie : `extrait` (citation exacte et courte du descriptif ; pour `prix_aberrant`,
-le lot), `constat` (ce que dit le stock, chiffré), `commentaire` (l'action à mener, une phrase).
+Champs d'une anomalie : `champ` (`descriptif`, `titre événement` ou `description événement` :
+le texte d'où vient l'extrait ; `stock` pour `prix_aberrant`), `extrait` (citation exacte et
+courte de ce texte ; pour `prix_aberrant`, le lot), `constat` (ce que dit le stock, chiffré), `commentaire` (l'action à mener, une phrase).
 Ne rien affirmer que le dossier ne dise pas.

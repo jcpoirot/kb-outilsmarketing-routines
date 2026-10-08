@@ -38,7 +38,6 @@ for (const p of aRelire.slice((numero - 1) * TAILLE, numero * TAILLE)) {
         : 'aucune offre programme';
     const fam = p.stockFamille;
     const extra = [
-        fam.nonDiffusesB2C ? `${fam.nonDiffusesB2C} logement(s) disponible(s) non diffusé(s) B2C` : '',
         fam.remisesLotsValables ? `remises de lot valables : ${fam.remisesLotsValables.lots} lot(s), max ${fmt(fam.remisesLotsValables.max)} €` : '',
         fam.fnoLotsValables ? `frais de notaire offerts sur ${fam.fnoLotsValables} lot(s)` : '',
         fam.horsGrille ? `${fam.horsGrille} lot(s) disponible(s) hors grille validée (exclus)` : '',
@@ -47,13 +46,17 @@ for (const p of aRelire.slice((numero - 1) * TAILLE, numero * TAILLE)) {
     out.push('', `### ${p.idProgram} — ${p.nom || '(sans nom)'} — ${p.ville || '?'} (${p.departement || '?'}) — ${p.agencyRegions || '?'}`,
         `Statut programme : ${p.statutProgramme || '—'} | Parent : ${p.parent || '—'} | Famille : ${p.famille.length ? p.famille.join(', ') : 'aucune'}`,
         `Offre programme : ${offre}`,
-        `${p.sansStock ? 'SANS STOCK' : p.virtuelsSeuls ? 'VIRTUELS SEULS' : 'AVEC STOCK'} — stock ${p.famille.length ? 'de la famille' : 'du programme'} : ${stockText(fam)}`,
+        `${p.sansStock ? 'SANS STOCK' : p.virtuelsSeuls ? 'VIRTUELS SEULS' : 'AVEC STOCK'} — stock diffusé ${p.famille.length ? 'de la famille' : 'du programme'} : ${stockText(fam)}`,
         ...extra.map(e => `  · ${e}`),
-        `  · logements au total : ${fam.logementsTotal} (${Object.entries(fam.etats).map(([k, v]) => `${k} ${v}`).join(', ') || '—'})`);
+        `  · logements de la résidence, tous états, pour juger un nombre total annoncé : ${fam.logementsTotal} (${Object.entries(fam.etats).map(([k, v]) => `${k} ${v}`).join(', ') || '—'})`);
     if (p.famille.length) out.push(`Stock du programme seul : ${stockText(p.stock)}`);
     if (p.texteIdentiqueA.length) {
         out.push(`Texte identique à : ${p.texteIdentiqueA.map(c => `${c.idProgram}${c.memeFamille ? ' (même famille)' : ' (AUTRE famille)'}`).join(', ')}`);
     }
     out.push(p.texteVide ? 'Descriptif : (vide)' : `Descriptif${p.texteIdentiqueParent ? ' (identique au parent)' : ''} :\n${p.texte}`);
+    if (p.evenement) {
+        out.push(`Titre événement : ${p.evenement.titre || '(vide)'}`,
+            `Description événement :\n${p.evenement.description || '(vide)'}`);
+    }
 }
 console.log(out.join('\n'));

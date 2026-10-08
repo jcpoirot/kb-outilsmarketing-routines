@@ -93,12 +93,14 @@ export function htmlToText(html) {
 const range = (a, b) => (a === null ? null : [a, b]);
 
 // Résumé du stock d'un ensemble de lots (logements et autres lots d'un programme ou d'une
-// famille). Seuls comptent les lots disponibles et commercialisables ; les virtuels sont à part.
-export function stockSummary(housing, others, day) {
-    const dispo = housing.filter(l => isAvailable(l) && !isVirtual(l) && !isGridKo(l));
+// famille). Seuls comptent les lots DIFFUSÉS (`diffuse`), disponibles et commercialisables ; les
+// virtuels diffusés sont à part. `etats` / `logementsTotal` décrivent toute la résidence (lots
+// vendus compris) et ne servent qu'à juger un nombre total de logements annoncé.
+export function stockSummary(housing, others, day, diffuse = () => true) {
+    const dispo = housing.filter(l => diffuse(l) && isAvailable(l) && !isVirtual(l) && !isGridKo(l));
     const parTypologie = {};
     let sMin = null, sMax = null, pMin = null, pMax = null;
-    let tvaReduite = 0, nonDiffuses = 0, remisesLots = 0, remiseMax = 0, fnoLots = 0;
+    let tvaReduite = 0, remisesLots = 0, remiseMax = 0, fnoLots = 0;
     const ratios = [];
     for (const l of dispo) {
         const t = typoLabel(l, false);
@@ -115,7 +117,6 @@ export function stockSummary(housing, others, day) {
             if (s > 0) ratios.push({ lot: l, ratio: p / s, prix: p, surface: s });
         }
         if (num(l.reducedPrice) > 0) tvaReduite++;
-        if (l.isUnitPublishedB2C !== '1') nonDiffuses++;
         if (offerValid(l.offerEndDate, day)) {
             if (num(l.discountB2C) > 0) { remisesLots++; remiseMax = Math.max(remiseMax, num(l.discountB2C)); }
             if (l.notaryFeesOfferedB2C === '1') fnoLots++;
@@ -144,11 +145,11 @@ export function stockSummary(housing, others, day) {
     }
 
     const virtuels = {};
-    housing.filter(l => isAvailable(l) && isVirtual(l)).forEach(l => {
+    housing.filter(l => diffuse(l) && isAvailable(l) && isVirtual(l)).forEach(l => {
         const t = typoLabel(l, false); virtuels[t] = (virtuels[t] || 0) + 1;
     });
     const autresLots = {};
-    others.filter(l => isAvailable(l) && !isVirtual(l) && !isGridKo(l)).forEach(l => {
+    others.filter(l => diffuse(l) && isAvailable(l) && !isVirtual(l) && !isGridKo(l)).forEach(l => {
         const t = typoLabel(l, true); autresLots[t] = (autresLots[t] || 0) + 1;
     });
     const etats = {};
@@ -162,10 +163,9 @@ export function stockSummary(housing, others, day) {
         surface: range(sMin, sMax),
         prix: range(pMin, pMax),
         tvaReduite,
-        nonDiffusesB2C: nonDiffuses,
         remisesLotsValables: remisesLots ? { lots: remisesLots, max: remiseMax } : null,
         fnoLotsValables: fnoLots,
-        horsGrille: housing.filter(l => isAvailable(l) && !isVirtual(l) && isGridKo(l)).length,
+        horsGrille: housing.filter(l => diffuse(l) && isAvailable(l) && !isVirtual(l) && isGridKo(l)).length,
         virtuels: sortTypo(virtuels),
         autresLots,
         logementsTotal: Object.values(etats).reduce((s, n) => s + n, 0),
@@ -186,7 +186,7 @@ export function stockText(s) {
             + (s.surface ? ` ; ${fmtR(s.surface, 'm²')}` : '') + (s.prix ? ` ; ${fmtR(s.prix, '€')}` : '')
             + (s.tvaReduite ? ` ; ${s.tvaReduite} à TVA réduite` : ''));
     } else {
-        parts.push('aucun logement disponible');
+        parts.push('aucun logement diffusé disponible');
     }
     const v = Object.entries(s.virtuels);
     if (v.length) parts.push(`virtuels : ${v.map(([t, n]) => `${t} ×${n}`).join(', ')}`);
@@ -232,6 +232,9 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
         if (!names[l.operationCode] && !isPlaceholderName(l.operationName)) names[l.operationCode] = l.operationName;
     }
 
+    // Lot diffusé (ontologie) : lot diffusé B2C ET programme diffusé B2C dans programs.csv.
+    const diffuse = l => l.isUnitPublishedB2C === '1' && programsMap[l.operationCode]?.isProgramPublishedB2C === '1';
+
     const textes = {};
     for (const d of programsDescriptions) textes[d.idProgram] = htmlToText(d.description);
     const byText = {};
@@ -245,11 +248,15 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
         const fam = familyOf(id);
         const famLots = fam.membres.flatMap(m => lotsByProg[m] || []);
         const famOthers = fam.membres.flatMap(m => othersByProg[m] || []);
-        const stock = stockSummary(lotsByProg[id] || [], othersByProg[id] || [], day);
-        const stockFamille = fam.membres.length > 1 ? stockSummary(famLots, famOthers, day) : stock;
+        const stock = stockSummary(lotsByProg[id] || [], othersByProg[id] || [], day, diffuse);
+        const stockFamille = fam.membres.length > 1 ? stockSummary(famLots, famOthers, day, diffuse) : stock;
         const autresDispo = Object.values(stockFamille.autresLots).reduce((s, n) => s + n, 0);
         const virtuelsDispo = Object.values(stockFamille.virtuels).reduce((s, n) => s + n, 0);
         const texte = textes[id];
+        // Événement (merchandisingTitle / merchandisingDescription) : analysé comme le descriptif.
+        const evenement = (d.merchandisingTitle || d.merchandisingDescription)
+            ? { titre: htmlToText(d.merchandisingTitle) || null, description: htmlToText(d.merchandisingDescription) || null }
+            : null;
         const parent = parentOf[id] || ((d.parentOperationCode || '').trim() !== id ? (d.parentOperationCode || '').trim() : '') || null;
         const copies = (byText[texte] || []).filter(o => o !== id);
         const offre = {
@@ -276,15 +283,17 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             texteVide: !texte,
             texteIdentiqueParent: !!(parent && texte && textes[parent] === texte),
             texteIdentiqueA: copies.map(o => ({ idProgram: o, memeFamille: fam.membres.includes(o) })),
+            evenement,
             offre,
-            // Sans stock : rien de disponible dans la famille, logements (virtuels compris) ou autres lots.
+            // Sans stock : aucun lot diffusé disponible dans la famille, logements (virtuels compris)
+            // ou autres lots.
             sansStock: !stockFamille.logementsDisponibles && !virtuelsDispo && !autresDispo,
             virtuelsSeuls: !stockFamille.logementsDisponibles && virtuelsDispo > 0,
             stock,
             stockFamille
         };
         dossier.hash = createHash('sha256').update(JSON.stringify({
-            texte, ville: dossier.ville, statut: dossier.statutProgramme, parent, offre,
+            texte, evenement, ville: dossier.ville, statut: dossier.statutProgramme, parent, offre,
             texteIdentiqueA: dossier.texteIdentiqueA, stock, stockFamille
         })).digest('hex').slice(0, 16);
         const prev = prevById[id];

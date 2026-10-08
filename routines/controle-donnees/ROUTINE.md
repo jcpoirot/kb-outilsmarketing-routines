@@ -82,8 +82,10 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
    - Les **2 ou 3 faits marquants** : plus fortes hausses ou baisses d'indicateurs, regroupement
      qui se distingue, évolution notable de l'offre diffusée ou des descriptifs en écart.
    - Règles : ne rien affirmer qui ne figure pas dans le rapport ; ne pas recopier les tableaux
-     du mail ; nommer un regroupement par sa partie avant le `|` (« Ouest ») ; premier rapport
-     (`datePrecedente` nul) : décrire l'état sans parler d'évolution.
+     du mail ; nommer un regroupement par sa partie avant le `|` (« Ouest », « Centre-Est /
+     Nord-Est 1 ») ; **ne jamais citer une personne** : le prénom après le `|` (« Margaux »,
+     « Constance »…) n'apparaît jamais dans la synthèse ; premier rapport (`datePrecedente` nul) :
+     décrire l'état sans parler d'évolution.
 
 5. Lancer `npm run controle-donnees:email -- FLAG`. Il écrit `AAAA-MM-JJ.email.html` et
    `AAAA-MM-JJ.email.json` (`to`, `subject`, `htmlFile`, `attachments`).

@@ -6,7 +6,7 @@
 //   node routines/controle-donnees/email.js [--prod] --echec "message"
 //
 // Sorties (à côté du rapport) : <date>.email.html et <date>.email.json
-// { to, subject, htmlFile, attachments: [{ file, filename, mimeType }] } — l'Excel des
+// { to, subject, htmlFile, text, attachments: [{ file, filename, mimeType }] } — l'Excel des
 // descriptifs (<date>.descriptifs.xlsx) est joint s'il existe.
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -180,14 +180,21 @@ function buildFailureHtml(message) {
 await ensureDir(ctx.outDir);
 const xlsxFile = ctx.file('descriptifs.xlsx');
 const xlsxName = !echec && existsSync(xlsxFile) ? `${ctx.date}.descriptifs.xlsx` : null;
-let html;
+let html, text;
 if (echec) {
     html = buildFailureHtml(echec);
+    text = `Le rapport du ${frDate(ctx.date)} n'a pas pu être produit.\n\n${echec}`;
 } else {
     if (!existsSync(ctx.file('json'))) throw new Error(`Rapport absent : ${ctx.file('json')} — lancer d'abord l'analyse`);
     const report = await readJson(ctx.file('json'));
     const synthese = existsSync(ctx.file('synthese.md')) ? await readFile(ctx.file('synthese.md'), 'utf8') : '';
     html = buildHtml(report, synthese, xlsxName);
+    // Version texte : la synthèse sans Markdown, puis le lien vers les outils.
+    text = synthese.split(/\r?\n/)
+        .map(l => l.replace(/^[-*]\s+/, '- ').replace(/\*\*/g, '').replace(/^#+\s*/, '').trim())
+        .filter(Boolean).join('\n')
+        + `\n\nDétail : ${SITE}/apps/controleDonnees.html`
+        + (xlsxName ? `\nExcel joint : ${xlsxName}` : '');
 }
 
 const prefix = { test: '[TEST] ', recette: '[RECETTE] ' }[ctx.mode] || '';
@@ -200,6 +207,6 @@ const to = ctx.mode === 'prod' && !echec ? config.destinataires : [config.destin
 const htmlFile = ctx.file('email.html');
 await writeFile(htmlFile, html);
 const attachments = xlsxName ? [{ file: xlsxFile, filename: xlsxName, mimeType: XLSX_MIME }] : [];
-await writeFile(ctx.file('email.json'), JSON.stringify({ to, subject, htmlFile, attachments }, null, 2) + '\n');
+await writeFile(ctx.file('email.json'), JSON.stringify({ to, subject, htmlFile, text, attachments }, null, 2) + '\n');
 console.log(`Mail prêt : ${subject}\nÀ : ${to.join(', ')}\nCorps : ${htmlFile}`
     + (attachments.length ? `\nPièce jointe : ${xlsxFile}` : ''));

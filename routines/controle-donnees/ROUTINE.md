@@ -35,7 +35,11 @@ Mode : recette. Suis exactement routines/controle-donnees/ROUTINE.md (section «
   `outilsmarketing.blob.core.windows.net` (CSV : programs, lots, otherUnits, programsDescriptions).
 - `config.js` de la prod doit déclarer `CONFIG.apps.controleDonnees.programsDescriptionsUrl` ;
   sinon l'analyse échoue avec un message qui le dit (Front non déployé).
-- Connecteur **Gmail** (compte jcpoirot@dimake.io), pièces jointes comprises.
+- Envoi par le script : variables d'environnement `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET` et
+  `GMAIL_REFRESH_TOKEN` (autorisation « gmail.send » de jcpoirot@dimake.io, voir le README), et
+  accès réseau à `oauth2.googleapis.com` et `gmail.googleapis.com`. SMTP n'est pas joignable
+  depuis les routines cloud.
+- Connecteur **Gmail** (compte jcpoirot@dimake.io) : repli seulement, sans pièce jointe.
 - Prod et recette : droit de pousser sur `main` (l'historique sert de référence aux variations).
   Il est donné par l'app GitHub « Claude », qui doit avoir accès à ce dépôt.
 
@@ -50,7 +54,7 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
    `AAAA-MM-JJ.descriptifs.dossier.json` (descriptifs), et affiche un résumé, dont le nombre de
    programmes dont le descriptif est à relire.
    - S'il échoue : lancer `npm run controle-donnees:email -- FLAG --echec "<les 40 dernières lignes
-     de la sortie d'erreur>"`, envoyer le mail comme à l'étape 7, puis s'arrêter (aucun commit).
+     de la sortie d'erreur>"`, lancer l'envoi comme à l'étape 7, puis s'arrêter (aucun commit).
 
 2. **Descriptifs** : juger les programmes à relire (section « Règles des descriptifs » plus bas).
    Les autres reprennent tels quels le verdict du dernier rapport historisé : leur texte et leur
@@ -94,15 +98,16 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
    la vérification doit révéler).
    **Test** : ne rien commiter, ne rien pousser.
 
-7. Envoyer le mail avec l'outil Gmail `send_message` :
-   - `to` et `subject` : ceux de `AAAA-MM-JJ.email.json` ;
-   - `htmlBody` : le contenu **intégral et inchangé** du fichier `htmlFile` ;
-   - `body` : une version texte courte (le verdict de la synthèse et le lien
-     https://outilsmarketing.kaufmanbroad.fr/apps/controleDonnees.html) ;
-   - `attachments` : une entrée par élément de `attachments` de `email.json` —
-     `content` = le fichier `file` en base64 (`base64 -w0 <file>`, sortie complète et inchangée),
-     `filename` et `mimeType` = ceux de `email.json`.
-   En cas d'échec, réessayer une fois ; si l'échec persiste, le dire dans la sortie de la session.
+7. Lancer `npm run controle-donnees:envoyer -- FLAG`. Le script envoie lui-même le mail par
+   l'API Gmail (corps HTML, version texte et Excel joint lus sur disque) : ne rien recopier.
+   - Code de sortie 0 : envoyé, c'est terminé.
+   - Code 3 (identifiants Gmail absents) ou autre échec : **repli** avec l'outil Gmail
+     `send_message` du connecteur — `to`, `subject` et `body` (= `text`) de `email.json`,
+     `htmlBody` = le contenu **intégral et inchangé** du fichier `htmlFile`, **sans pièce
+     jointe** (ne jamais recopier un fichier encodé en base64). Ne pas réécrire ni simplifier le
+     mail. Signaler en tête de la sortie de la session que l'Excel n'a pas été joint, et pourquoi.
+     En cas d'échec du connecteur, réessayer une fois.
+   - Un mail d'échec (étape 1) suit le même chemin.
 
 ## Règles des descriptifs
 

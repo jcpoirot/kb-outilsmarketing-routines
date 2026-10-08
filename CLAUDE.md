@@ -23,8 +23,9 @@ routine au prochain lancement, une fois poussée).
   « Cohérence descriptif / stock » de `outilsMarketing/.claude/rules/ontologie.md`.
   `programsDescriptions.csv` se lit avec `parseCSVStrict`, jamais avec le parseur des apps.
 - **Mails** : HTML à styles en ligne et tableaux (`lib/email.js`), pas de CSS externe ni de
-  flex/grid. Les scripts n'envoient rien : l'envoi est fait par la routine (Gmail `send_message`,
-  `htmlBody` = fichier inchangé).
+  flex/grid. L'envoi est fait par le script (`lib/gmail.js`, API Gmail) : ne jamais faire recopier
+  par le modèle un fichier encodé (base64) dans un outil, c'est la cause de l'échec du 08/10/2026.
+  Identifiants `GMAIL_*` en variables d'environnement, jamais dans le dépôt.
 - Textes en français avec accents ; identifiants en anglais ou en français selon le domaine
   (indicateurs métier en français, comme dans les apps).
 - Proxy TLS en local : `NODE_OPTIONS=--use-system-ca`, jamais de désactivation de la vérification TLS.

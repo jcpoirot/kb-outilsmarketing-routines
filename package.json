@@ -9,6 +9,7 @@
     "controle-donnees:dossier": "node routines/controle-donnees/lire-dossier.js",
     "controle-donnees:descriptifs": "node routines/controle-donnees/consolider.js",
     "controle-donnees:email": "node routines/controle-donnees/email.js",
+    "controle-donnees:envoyer": "node routines/controle-donnees/envoyer.js",
     "controle-donnees:historiser": "node lib/historiser.js controle-donnees",
     "parite": "node outils/parite-controle-donnees.js"
   },

@@ -2,7 +2,7 @@
 
 Routines cloud Claude autour des outils marketing de Kaufman & Broad : une analyse planifiée
 produit un rapport, Claude en rédige la synthèse, le mail part depuis **jcpoirot@dimake.io**
-(connecteur Gmail) dès la fin de l'analyse, et le rapport est commité ici pour servir de
+(API Gmail, envoyé par le script) dès la fin de l'analyse, et le rapport est commité ici pour servir de
 référence aux variations suivantes.
 
 Dépôt **privé** (chiffres internes), branche `main` seule : rien n'y est déployé.
@@ -48,6 +48,29 @@ npm run parite -- --cache                        # chiffres de la routine = chif
 
 Options communes : `--prod` (à ne lancer en local que pour rejouer un rapport historique),
 `--date AAAA-MM-JJ`, `--cache`.
+
+## Envoi des mails
+
+Le script `lib/gmail.js` envoie le mail lui-même par l'**API Gmail** (HTTPS) : corps HTML,
+version texte et pièces jointes sont lus sur disque, le modèle ne recopie rien. Recopier un
+fichier encodé dans l'outil Gmail du connecteur n'est pas fiable (le 08/10/2026, l'Excel joint a
+été altéré et refusé), et SMTP n'est pas joignable depuis les routines cloud (seul HTTPS sort).
+Le connecteur Gmail ne sert plus qu'en repli, sans pièce jointe.
+
+Mise en place, une fois :
+
+1. Dans Google Cloud (projet de dimake.io), activer l'**API Gmail** et créer un client OAuth de
+   type **Application de bureau** ; noter son identifiant et son secret.
+2. En local : `GMAIL_CLIENT_ID=… GMAIL_CLIENT_SECRET=… NODE_OPTIONS=--use-system-ca node outils/gmail-autorisation.js`,
+   ouvrir l'adresse affichée, se connecter avec **jcpoirot@dimake.io** et accepter l'envoi de mails.
+   Le script affiche `GMAIL_REFRESH_TOKEN`.
+3. Déclarer `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET` et `GMAIL_REFRESH_TOKEN` dans les variables
+   d'environnement de l'environnement cloud des routines (claude.ai), et autoriser
+   `oauth2.googleapis.com` et `gmail.googleapis.com` dans son accès réseau.
+
+Ces identifiants permettent d'envoyer des mails au nom de ce compte (scope `gmail.send` seul,
+ni lecture ni suppression) : ne jamais les commiter. Pour les révoquer : compte Google →
+Sécurité → Applications tierces.
 
 ## Données
 

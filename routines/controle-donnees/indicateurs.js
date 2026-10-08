@@ -5,7 +5,7 @@
 // particularités : le chiffre du mail doit être celui qu'affiche le lien. Toute évolution
 // d'un contrôle dans l'app est à reporter ici (et inversement).
 
-import { SITE } from '../../lib/donnees.js';
+import { SITE_LIENS as SITE } from '../../lib/donnees.js';
 
 export const SANS_REGROUPEMENT = 'Sans regroupement';
 

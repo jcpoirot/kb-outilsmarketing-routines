@@ -1,12 +1,15 @@
 // Étape 1 : calcule les indicateurs, les compare au dernier rapport historisé et écrit
-// <date>.json (out/ en test, historique/ en prod). Affiche un résumé.
+// <date>.json (out/ en test, historique/ en prod). Prépare aussi le dossier des descriptifs
+// (<date>.descriptifs.dossier.json, cf. descriptifs.js) que Claude relit à l'étape suivante.
+// Affiche un résumé.
 //
 //   node routines/controle-donnees/analyse.js [--prod] [--cache] [--date AAAA-MM-JJ]
 
 import { writeFile } from 'node:fs/promises';
 import { loadCsvs } from '../../lib/donnees.js';
-import { routineContext, ensureDir, previousReport } from '../../lib/routine.js';
+import { routineContext, ensureDir, previousReport, previousFile } from '../../lib/routine.js';
 import { computeIndicateurs } from './indicateurs.js';
+import { buildDossier } from './descriptifs.js';
 
 const ROUTINE = 'controle-donnees';
 
@@ -37,7 +40,8 @@ function withDiff(data, prev) {
 
 const ctx = routineContext(ROUTINE);
 const csv = await loadCsvs('controleDonnees',
-    { programs: 'programsUrl', lots: 'lotsUrl' }, { cache: ctx.cache });
+    { programs: 'programsUrl', lots: 'lotsUrl', otherUnits: 'otherUnitsUrl', programsDescriptions: 'programsDescriptionsUrl' },
+    { cache: ctx.cache, strict: ['programsDescriptions'] });
 const prev = await previousReport(ctx);
 const data = withDiff(computeIndicateurs(csv), prev);
 
@@ -47,16 +51,23 @@ const report = {
     mode: ctx.mode,
     genereLe: new Date().toISOString(),
     datePrecedente: prev?.date || null,
-    sources: { programs: csv.programs.length, lots: csv.lots.length },
+    sources: { programs: csv.programs.length, lots: csv.lots.length, otherUnits: csv.otherUnits.length, programsDescriptions: csv.programsDescriptions.length },
     ...data
 };
 
 await ensureDir(ctx.outDir);
 await writeFile(ctx.file('json'), JSON.stringify(report, null, 2) + '\n');
 
+// Verdicts du dernier rapport historisé : un programme dont le hash n'a pas bougé n'est pas relu.
+const dossier = buildDossier(csv, ctx.date, await previousFile(ctx, 'descriptifs.json'));
+await writeFile(ctx.file('descriptifs.dossier.json'), JSON.stringify(dossier, null, 2) + '\n');
+
 const sign = n => (n === null ? '' : ` (${n > 0 ? '+' : ''}${n})`);
 console.log(`Contrôle des données — ${ctx.date} — mode ${ctx.mode}`);
 console.log(`Référence : ${report.datePrecedente || 'aucune (premier rapport)'}`);
 console.log(`Diffusés : ${data.diffusion.programmes} programmes${sign(data.diffusion.variation.programmes)}, ${data.diffusion.lots} lots${sign(data.diffusion.variation.lots)}`);
 for (const ind of data.indicateurs) console.log(`- ${ind.libelle} : ${ind.total}${sign(ind.variation)}`);
+const aRelire = dossier.programmes.filter(p => p.aRelire).length;
+console.log(`Descriptifs : ${dossier.programmes.length} programmes, ${aRelire} à relire (${dossier.programmes.length - aRelire} repris du ${dossier.previousDate || '—'})`);
 console.log(`Rapport : ${ctx.file('json')}`);
+console.log(`Dossier des descriptifs : ${ctx.file('descriptifs.dossier.json')}`);

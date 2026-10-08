@@ -5,13 +5,15 @@
 //   node routines/controle-donnees/email.js [--prod] [--date AAAA-MM-JJ]
 //   node routines/controle-donnees/email.js [--prod] --echec "message"
 //
-// Sorties (à côté du rapport) : <date>.email.html et <date>.email.json { to, subject, htmlFile }.
+// Sorties (à côté du rapport) : <date>.email.html et <date>.email.json
+// { to, subject, htmlFile, attachments: [{ file, filename, mimeType }] } — l'Excel des
+// descriptifs (<date>.descriptifs.xlsx) est joint s'il existe.
 
 import { readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { routineContext, ensureDir, readJson, loadRoutineConfig } from '../../lib/routine.js';
 import { frDate } from '../../lib/chemins.js';
-import { SITE } from '../../lib/donnees.js';
+import { SITE_LIENS as SITE } from '../../lib/donnees.js';
 import { COLORS, esc, fmt, variation, markdownToHtml, section, th, td, table, link, page } from '../../lib/email.js';
 import { lienApp1, lienApp5, SANS_REGROUPEMENT } from './indicateurs.js';
 
@@ -48,7 +50,7 @@ function cell(n, d, href) {
 function matrice(report, indicateurs) {
     const head = th('Regroupement') + indicateurs.map(i => th(esc(i.libelle), 'center')).join('');
     const total = `<tr style="background:${COLORS.bg}">${td('<strong>Total</strong>')}`
-        + indicateurs.map(i => td(cell(i.total, i.variation, i.lien), 'center')).join('') + '</tr>';
+        + indicateurs.map(i => td(cell(i.total, i.variation, lienIndicateur(i, '')), 'center')).join('') + '</tr>';
     const rows = report.regroupements
         .filter(rg => indicateurs.some(i => i.parRegroupement[rg] || i.variationParRegroupement?.[rg]))
         .map(rg => `<tr>${td(rgLabel(rg))}`
@@ -86,16 +88,55 @@ function repartitions(report) {
         + `<h3 style="font-size:14px;margin:16px 0 4px">Par regroupement</h3>${regs}`;
 }
 
+// Bloc « Descriptifs et stock » : programmes dont le descriptif s'écarte du stock de leur
+// famille, comptés à leur anomalie la plus grave ; les programmes sans stock en dernier.
+const XLSX_MIME = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+const SEVS = [['forte', 'Forte'], ['moyenne', 'Moyenne'], ['faible', 'Faible']];
+
+function descriptifsHtml(report, xlsxName) {
+    const a = report.descriptifs;
+    if (!a) return `<p style="color:${COLORS.muted}">Contrôle non disponible pour ce rapport.</p>`;
+    const v = a.variation;
+    const nv = (n, d) => `${n ? `<strong>${fmt(n)}</strong>` : `<span style="color:${COLORS.muted}">0</span>`}`
+        + `${variation(d, 'bad') ? `<br><span style="font-size:12px">${variation(d, 'bad')}</span>` : ''}`;
+    const head = th('Regroupement') + SEVS.map(([, l]) => th(l, 'center')).join('') + th('Total', 'center');
+    const total = `<tr style="background:${COLORS.bg}">${td('<strong>Avec stock</strong>')}`
+        + SEVS.map(([k]) => td(nv(a.avecStock[k], v.avecStock[k]), 'center')).join('')
+        + td(nv(a.avecStock.total, v.avecStock.total), 'center') + '</tr>';
+    const rows = a.regroupements.filter(rg => a.avecStock.parRegroupement[rg] || v.parRegroupement?.[rg]?.total)
+        .map(rg => {
+            const r = a.avecStock.parRegroupement[rg] || {};
+            const rv = v.parRegroupement?.[rg] || {};
+            return `<tr>${td(`<strong>${esc(rg.split('|')[0].trim())}</strong>`)}`
+                + SEVS.map(([k]) => td(nv(r[k] || 0, rv[k] ?? null), 'center')).join('')
+                + td(nv(r.total || 0, rv.total ?? null), 'center') + '</tr>';
+        });
+    const detailSans = a.regroupements.filter(rg => a.sansStock.parRegroupement[rg])
+        .map(rg => `${esc(rg.split('|')[0].trim())} ${a.sansStock.parRegroupement[rg]}`).join(' · ');
+    const sans = `<tr>${td('<strong>Sans stock</strong><br><span style="font-size:12px;color:' + COLORS.muted + '">le texte parle encore de stock — en fin de liste</span>')}`
+        + td(detailSans ? `<span style="font-size:12px;color:${COLORS.muted}">${detailSans}</span>` : '', 'left', 'border-top:2px solid ' + COLORS.line)
+            .replace('<td ', '<td colspan="3" ')
+        + td(nv(a.sansStock.total, v.sansStock), 'center') + '</tr>';
+    const intro = `<p style="margin:6px 0 8px"><strong style="font-size:18px;color:${COLORS.green}">${fmt(a.total)}</strong> `
+        + `programme${a.total > 1 ? 's' : ''} sur ${fmt(a.analyses)} ${a.total > 1 ? 'ont' : 'a'} un descriptif en écart avec le stock de ${a.total > 1 ? 'leur' : 'sa'} famille`
+        + `${variation(v.total, 'bad') ? ` (${variation(v.total, 'bad')})` : ''}.</p>`;
+    const pj = xlsxName
+        ? `<p style="margin:8px 0 0;font-size:12px;color:${COLORS.muted}">Le détail (extrait du descriptif, stock disponible, constat et action, lien vers la page du programme) est dans l'Excel joint : <strong>${esc(xlsxName)}</strong>.</p>`
+        : '';
+    return intro + `<div style="overflow-x:auto">${table(head, [total, ...rows, sans])}</div>` + pj;
+}
+
 function perimetres(report) {
     const items = [
         `<li><strong>Programmes et lots diffusés</strong> : ${esc(report.diffusion.perimetre)}.</li>`,
-        ...report.indicateurs.map(i => `<li><strong>${esc(i.libelle)}</strong> : ${esc(i.perimetre)}.</li>`)
+        ...report.indicateurs.map(i => `<li><strong>${esc(i.libelle)}</strong> : ${esc(i.perimetre)}.</li>`),
+        `<li><strong>Descriptifs et stock</strong> : programmes diffusés B2C ayant un descriptif, comparés au stock disponible et commercialisable de toute leur famille (parent et enfants, autres lots compris) ; un programme compte une fois, à son écart le plus grave. Contrôle propre à cette routine, sans équivalent dans les apps.</li>`
     ];
     return `<p style="margin:6px 0;font-size:12px;color:${COLORS.muted}">Chaque chiffre reprend les <strong>filtres par défaut</strong> de l'app ouverte par son lien, qui affiche donc la même liste.</p>`
         + `<ul style="margin:4px 0;padding-left:18px;font-size:12px;color:${COLORS.muted}">${items.join('')}</ul>`;
 }
 
-function buildHtml(report, synthese) {
+function buildHtml(report, synthese, xlsxName) {
     const parts = [];
     if (ctx.mode === 'recette') {
         parts.push(`<div style="margin:0 0 14px;padding:8px 12px;background:#FFF7E6;border-left:4px solid ${COLORS.warn};font-size:13px">`
@@ -118,6 +159,8 @@ function buildHtml(report, synthese) {
     parts.push(section('Offre diffusée', diffusionTiles(report), 'Programmes et lots diffusés en B2C'));
     parts.push(section('Problèmes de données', matrice(report, report.indicateurs),
         'Chaque chiffre ouvre la liste dans outilsMarketing, filtrée sur le regroupement'));
+    parts.push(section('Descriptifs et stock', descriptifsHtml(report, xlsxName),
+        'Descriptifs de programmes qui annoncent ce que le stock ne porte pas'));
     parts.push(section("Répartition de l'offre diffusée", repartitions(report)));
 
     parts.push(section('Périmètres', perimetres(report)));
@@ -135,6 +178,8 @@ function buildFailureHtml(message) {
 }
 
 await ensureDir(ctx.outDir);
+const xlsxFile = ctx.file('descriptifs.xlsx');
+const xlsxName = !echec && existsSync(xlsxFile) ? `${ctx.date}.descriptifs.xlsx` : null;
 let html;
 if (echec) {
     html = buildFailureHtml(echec);
@@ -142,7 +187,7 @@ if (echec) {
     if (!existsSync(ctx.file('json'))) throw new Error(`Rapport absent : ${ctx.file('json')} — lancer d'abord l'analyse`);
     const report = await readJson(ctx.file('json'));
     const synthese = existsSync(ctx.file('synthese.md')) ? await readFile(ctx.file('synthese.md'), 'utf8') : '';
-    html = buildHtml(report, synthese);
+    html = buildHtml(report, synthese, xlsxName);
 }
 
 const prefix = { test: '[TEST] ', recette: '[RECETTE] ' }[ctx.mode] || '';
@@ -154,5 +199,7 @@ const to = ctx.mode === 'prod' && !echec ? config.destinataires : [config.destin
 
 const htmlFile = ctx.file('email.html');
 await writeFile(htmlFile, html);
-await writeFile(ctx.file('email.json'), JSON.stringify({ to, subject, htmlFile }, null, 2) + '\n');
-console.log(`Mail prêt : ${subject}\nÀ : ${to.join(', ')}\nCorps : ${htmlFile}`);
+const attachments = xlsxName ? [{ file: xlsxFile, filename: xlsxName, mimeType: XLSX_MIME }] : [];
+await writeFile(ctx.file('email.json'), JSON.stringify({ to, subject, htmlFile, attachments }, null, 2) + '\n');
+console.log(`Mail prêt : ${subject}\nÀ : ${to.join(', ')}\nCorps : ${htmlFile}`
+    + (attachments.length ? `\nPièce jointe : ${xlsxFile}` : ''));

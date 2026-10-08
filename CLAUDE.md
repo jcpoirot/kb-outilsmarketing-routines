@@ -16,6 +16,12 @@ routine au prochain lancement, une fois poussée).
   évolution d'un contrôle, d'un côté ou de l'autre, se reporte de l'autre côté et se vérifie avec
   `NODE_OPTIONS=--use-system-ca npm run parite`. Les liens du mail portent le regroupement dans
   le hash (`#/loyers?regroupement=…`, `#/?regroupement=…`), lu par les deux pages.
+- **Descriptifs et stock** : contrôle sans équivalent dans les apps (pas de parité). Le script
+  (`descriptifs.js`, `consolider.js`) calcule tout ce qui est calculable ; Claude ne juge que le
+  texte, selon les « Règles des descriptifs » de `ROUTINE.md`, et seulement pour les programmes
+  dont le `hash` a changé. Toute règle nouvelle va dans `ROUTINE.md` **et** dans la notion
+  « Cohérence descriptif / stock » de `outilsMarketing/.claude/rules/ontologie.md`.
+  `programsDescriptions.csv` se lit avec `parseCSVStrict`, jamais avec le parseur des apps.
 - **Mails** : HTML à styles en ligne et tableaux (`lib/email.js`), pas de CSS externe ni de
   flex/grid. Les scripts n'envoient rien : l'envoi est fait par la routine (Gmail `send_message`,
   `htmlBody` = fichier inchangé).

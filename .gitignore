@@ -5,6 +5,12 @@ out/
 historique/**/*.email.html
 historique/**/*.email.json
 
+# Descriptifs : seul <date>.descriptifs.json est historisé (verdicts et hash). Le dossier, les
+# fichiers de lots relus et l'Excel sont regénérés à chaque exécution.
+historique/**/*.descriptifs.dossier.json
+historique/**/*.descriptifs.relus-*.json
+historique/**/*.descriptifs.xlsx
+
 node_modules/
 .vscode/
 .DS_Store

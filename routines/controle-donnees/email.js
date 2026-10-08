@@ -97,6 +97,10 @@ function perimetres(report) {
 
 function buildHtml(report, synthese) {
     const parts = [];
+    if (ctx.mode === 'recette') {
+        parts.push(`<div style="margin:0 0 14px;padding:8px 12px;background:#FFF7E6;border-left:4px solid ${COLORS.warn};font-size:13px">`
+            + `<strong>Recette</strong> : chaîne de production complète (historique commité dans recette/, hors référence), envoyée au seul destinataire de test.</div>`);
+    }
     if (ctx.mode === 'test') {
         parts.push(`<div style="margin:0 0 14px;padding:8px 12px;background:#FFF7E6;border-left:4px solid ${COLORS.warn};font-size:13px">`
             + `<strong>Envoi de test</strong> : ce rapport n'est pas historisé et ne sert pas de référence aux prochaines variations.</div>`);
@@ -141,7 +145,7 @@ if (echec) {
     html = buildHtml(report, synthese);
 }
 
-const prefix = ctx.mode === 'test' ? '[TEST] ' : '';
+const prefix = { test: '[TEST] ', recette: '[RECETTE] ' }[ctx.mode] || '';
 const subject = echec
     ? `${prefix}⚠ ${config.nom} — échec du ${frDate(ctx.date)}`
     : `${prefix}${config.nom} — point du ${frDate(ctx.date)}`;

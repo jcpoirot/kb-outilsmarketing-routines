@@ -16,16 +16,17 @@ Dépôt **privé** (chiffres internes), branche `main` seule : rien n'y est dép
 Chaque routine a son dossier : `ROUTINE.md` (le prompt suivi par la routine cloud),
 `config.json` (nom, destinataires, adresse de test), ses scripts.
 
-## Deux modes
+## Modes
 
-| | Test (défaut) | Prod (`--prod`) |
-|---|---|---|
-| Sorties | `out/<routine>/` (non versionné) | `historique/<routine>/` |
-| Destinataires | `destinataireTest` seul, objet préfixé `[TEST]`, bandeau dans le mail | `destinataires` |
-| Historique | rien n'est commité | `AAAA-MM-JJ.json` + `.synthese.md` commités et poussés |
+| | Test (défaut) | Prod (`--prod`) | Recette (`--recette`) |
+|---|---|---|---|
+| Sorties | `out/<routine>/` (non versionné) | `historique/<routine>/` | `historique/<routine>/recette/` (jamais lu comme référence) |
+| Destinataires | `destinataireTest` seul, objet préfixé `[TEST]`, bandeau dans le mail | `destinataires` | `destinataireTest` seul, objet préfixé `[RECETTE]` |
+| Historique | rien n'est commité | `AAAA-MM-JJ.json` + `.synthese.md` commités et poussés | commité et poussé, comme en prod |
 
-Dans les deux modes, les variations se calculent par rapport au **dernier rapport historisé
-antérieur au jour** : un test ne devient jamais une référence.
+Les variations se calculent par rapport au **dernier rapport historisé antérieur au jour** : un
+test ne devient jamais une référence. En recette, le rapport du jour compte aussi, pour que les
+variations s'affichent.
 
 Côté cloud, chaque routine existe en deux exemplaires : la routine planifiée (prompt
 `Mode : prod`) et une routine de test sans planification active, lancée à la main

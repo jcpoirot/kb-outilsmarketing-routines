@@ -20,18 +20,27 @@ Routine de test (lancée à la main) :
 Mode : test. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »).
 ```
 
+Recette (exécution ponctuelle, pour vérifier toute la chaîne de la prod, push compris, avec un
+mail au seul destinataire de test) :
+
+```
+Mode : recette. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »).
+```
+
 ## Prérequis de la routine
 
 - Node 20+ (aucune dépendance npm).
 - Accès réseau à `outilsmarketing.kaufmanbroad.fr` (lecture de `config.js`) et à
   `outilsmarketing.blob.core.windows.net` (CSV).
 - Connecteur **Gmail** (compte jcpoirot@dimake.io).
-- Prod seulement : droit de pousser sur `main` (l'historique sert de référence aux variations).
+- Prod et recette : droit de pousser sur `main` (l'historique sert de référence aux variations).
+  Il est donné par l'app GitHub « Claude », qui doit avoir accès à ce dépôt.
 
 ## Déroulement
 
-Le **mode** est donné en tête du prompt. `FLAG` vaut `--prod` en mode prod, rien en mode test.
-Les fichiers sont dans `historique/controle-donnees/` en prod, `out/controle-donnees/` en test ;
+Le **mode** est donné en tête du prompt. `FLAG` vaut `--prod` en mode prod, `--recette` en mode
+recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/` en prod,
+`historique/controle-donnees/recette/` en recette, `out/controle-donnees/` en test ;
 `AAAA-MM-JJ` est la date du jour à Paris, affichée par l'étape 1.
 
 1. Lancer `npm run controle-donnees:analyse -- FLAG`. Il écrit `AAAA-MM-JJ.json` et affiche un résumé.
@@ -59,6 +68,9 @@ Les fichiers sont dans `historique/controle-donnees/` en prod, `out/controle-don
      `controle-donnees: rapport du AAAA-MM-JJ`) et pousser sur `main`. Ne modifier ni commiter
      aucun autre fichier. Si le push échoue, envoyer quand même le mail et le signaler dans la
      sortie de la session (les prochaines variations partiront du rapport précédent).
+   - **Recette** : comme la prod, mais avec les deux fichiers de
+     `historique/controle-donnees/recette/` et le message `controle-donnees: recette du AAAA-MM-JJ`.
+     Un push qui échoue est ici le résultat à signaler en tête de la sortie de la session.
    - **Test** : ne rien commiter, ne rien pousser.
 
 5. Envoyer le mail avec l'outil Gmail `send_message` :

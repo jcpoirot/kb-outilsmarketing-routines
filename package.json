@@ -7,6 +7,7 @@
   "scripts": {
     "controle-donnees:analyse": "node routines/controle-donnees/analyse.js",
     "controle-donnees:email": "node routines/controle-donnees/email.js",
+    "controle-donnees:historiser": "node lib/historiser.js controle-donnees",
     "parite": "node outils/parite-controle-donnees.js"
   },
   "engines": {

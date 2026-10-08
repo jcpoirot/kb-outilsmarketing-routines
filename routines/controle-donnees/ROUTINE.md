@@ -11,7 +11,7 @@ Ce fichier est le prompt de la routine cloud : la routine se contente de demande
 Routine planifiée (prod) :
 
 ```
-Mode : prod. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »).
+Mode : prod. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »). Tu es autorisé à commiter et pousser sur main les fichiers d'historique, uniquement via `npm run controle-donnees:historiser`.
 ```
 
 Routine de test (lancée à la main) :
@@ -24,7 +24,7 @@ Recette (exécution ponctuelle, pour vérifier toute la chaîne de la prod, push
 mail au seul destinataire de test) :
 
 ```
-Mode : recette. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »).
+Mode : recette. Suis exactement routines/controle-donnees/ROUTINE.md (section « Déroulement »). Tu es autorisé à commiter et pousser sur main les fichiers d'historique, uniquement via `npm run controle-donnees:historiser`.
 ```
 
 ## Prérequis de la routine
@@ -63,14 +63,13 @@ recette, rien en mode test. Les fichiers sont dans `historique/controle-donnees/
 
 4. Lancer `npm run controle-donnees:email -- FLAG`. Il écrit `AAAA-MM-JJ.email.html` et
    `AAAA-MM-JJ.email.json` (`to`, `subject`, `htmlFile`).
-   - **Prod** : commiter `historique/controle-donnees/AAAA-MM-JJ.json` et
-     `historique/controle-donnees/AAAA-MM-JJ.synthese.md` (message :
-     `controle-donnees: rapport du AAAA-MM-JJ`) et pousser sur `main`. Ne modifier ni commiter
-     aucun autre fichier. Si le push échoue, envoyer quand même le mail et le signaler dans la
-     sortie de la session (les prochaines variations partiront du rapport précédent).
-   - **Recette** : comme la prod, mais avec les deux fichiers de
-     `historique/controle-donnees/recette/` et le message `controle-donnees: recette du AAAA-MM-JJ`.
-     Un push qui échoue est ici le résultat à signaler en tête de la sortie de la session.
+   - **Prod et recette** : lancer `npm run controle-donnees:historiser -- FLAG`. Il commite les
+     seuls `AAAA-MM-JJ.json` et `AAAA-MM-JJ.synthese.md` du mode et les pousse sur `main`
+     (`HEAD:main`, avec un rebase si `main` a avancé). Ne faire aucun autre commit ni push, et
+     ne pas pousser autrement que par ce script : le push sur `main` est autorisé par le
+     propriétaire du dépôt pour ces seuls fichiers. Si le script échoue, envoyer quand même le
+     mail et signaler l'erreur en tête de la sortie de la session (en prod, les prochaines
+     variations partiront du rapport précédent ; en recette, c'est précisément ce que la vérification doit révéler).
    - **Test** : ne rien commiter, ne rien pousser.
 
 5. Envoyer le mail avec l'outil Gmail `send_message` :

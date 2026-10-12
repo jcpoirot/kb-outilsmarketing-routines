@@ -1,0 +1,367 @@
+{
+  "routine": "controle-donnees",
+  "date": "2026-10-12",
+  "mode": "prod",
+  "genereLe": "2026-10-12T05:11:52.105Z",
+  "datePrecedente": "2026-10-08",
+  "sources": {
+    "programs": 2170,
+    "lots": 14111,
+    "otherUnits": 2534,
+    "programsDescriptions": 169
+  },
+  "diffusion": {
+    "perimetre": "Programmes diffusés B2C non archivés ; lots diffusés B2C de ces programmes",
+    "programmes": 159,
+    "lots": 1660,
+    "parRegroupement": {
+      "Ile-de-France | Flore": {
+        "programmes": 57,
+        "lots": 634,
+        "variation": {
+          "programmes": 0,
+          "lots": -10
+        }
+      },
+      "Sud-Est / Sud-Ouest | Lucie": {
+        "programmes": 29,
+        "lots": 246,
+        "variation": {
+          "programmes": 0,
+          "lots": -2
+        }
+      },
+      "Ouest | Margaux": {
+        "programmes": 36,
+        "lots": 334,
+        "variation": {
+          "programmes": -1,
+          "lots": -1
+        }
+      },
+      "Centre-Est / Nord-Est 1 | Constance": {
+        "programmes": 28,
+        "lots": 341,
+        "variation": {
+          "programmes": 0,
+          "lots": 0
+        }
+      },
+      "Nord-Est 2 | Elodie": {
+        "programmes": 9,
+        "lots": 105,
+        "variation": {
+          "programmes": 0,
+          "lots": -1
+        }
+      }
+    },
+    "parStatut": [
+      {
+        "statut": "Avant-première",
+        "programmes": 21,
+        "lots": 89,
+        "variation": {
+          "programmes": 0,
+          "lots": 0
+        }
+      },
+      {
+        "statut": "Lancement commercial",
+        "programmes": 6,
+        "lots": 154,
+        "variation": {
+          "programmes": 0,
+          "lots": 0
+        }
+      },
+      {
+        "statut": "Nouveauté",
+        "programmes": 17,
+        "lots": 379,
+        "variation": {
+          "programmes": 0,
+          "lots": -1
+        }
+      },
+      {
+        "statut": "À découvrir",
+        "programmes": 18,
+        "lots": 413,
+        "variation": {
+          "programmes": 0,
+          "lots": -1
+        }
+      },
+      {
+        "statut": "En travaux",
+        "programmes": 49,
+        "lots": 521,
+        "variation": {
+          "programmes": 0,
+          "lots": -10
+        }
+      },
+      {
+        "statut": "Livraison rapide",
+        "programmes": 24,
+        "lots": 41,
+        "variation": {
+          "programmes": -1,
+          "lots": -2
+        }
+      },
+      {
+        "statut": "Dernières opportunités",
+        "programmes": 18,
+        "lots": 50,
+        "variation": {
+          "programmes": 0,
+          "lots": 0
+        }
+      },
+      {
+        "statut": "Sans statut",
+        "programmes": 6,
+        "lots": 13,
+        "variation": {
+          "programmes": 0,
+          "lots": 0
+        }
+      }
+    ],
+    "variation": {
+      "programmes": -1,
+      "lots": -14
+    }
+  },
+  "indicateurs": [
+    {
+      "cle": "sansPlan",
+      "libelle": "Lots sans plan de vente",
+      "unite": "lot",
+      "slug": "plan-de-vente",
+      "perimetre": "Lots diffusés B2C (programme et lot), lots virtuels et Avant-première inclus",
+      "parRegroupement": {
+        "Ile-de-France | Flore": 11,
+        "Ouest | Margaux": 3,
+        "Centre-Est / Nord-Est 1 | Constance": 10,
+        "Sud-Est / Sud-Ouest | Lucie": 8
+      },
+      "total": 32,
+      "lien": "https://outilsmarketing.kaufmanbroad.fr/apps/controleDonnees.html#/plan-de-vente",
+      "variation": -2,
+      "variationParRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": 0,
+        "Ile-de-France | Flore": -2,
+        "Nord-Est 2 | Elodie": 0,
+        "Ouest | Margaux": 0,
+        "Sud-Est / Sud-Ouest | Lucie": 0
+      }
+    },
+    {
+      "cle": "sansLoyer",
+      "libelle": "Lots sans loyer",
+      "unite": "lot",
+      "slug": "loyers",
+      "perimetre": "Loyer patrimonial ou LMNP manquant, lots diffusés B2C, hors LMNP géré et Avant-première",
+      "parRegroupement": {
+        "Ile-de-France | Flore": 130,
+        "Sud-Est / Sud-Ouest | Lucie": 105,
+        "Ouest | Margaux": 120,
+        "Centre-Est / Nord-Est 1 | Constance": 149,
+        "Nord-Est 2 | Elodie": 5
+      },
+      "total": 509,
+      "lien": "https://outilsmarketing.kaufmanbroad.fr/apps/controleDonnees.html#/loyers",
+      "variation": -4,
+      "variationParRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": -3,
+        "Ile-de-France | Flore": -1,
+        "Nord-Est 2 | Elodie": 0,
+        "Ouest | Margaux": 1,
+        "Sud-Est / Sud-Ouest | Lucie": -1
+      }
+    },
+    {
+      "cle": "sansImages",
+      "libelle": "Lots sans image",
+      "unite": "lot",
+      "app": 1,
+      "perimetre": "Lots diffusés B2C des programmes diffusés B2C, Avant-première incluse",
+      "parRegroupement": {
+        "Ile-de-France | Flore": 49,
+        "Sud-Est / Sud-Ouest | Lucie": 8,
+        "Centre-Est / Nord-Est 1 | Constance": 27,
+        "Ouest | Margaux": 30
+      },
+      "total": 114,
+      "lien": "https://outilsmarketing.kaufmanbroad.fr/apps/analyseImages.html#/",
+      "variation": -7,
+      "variationParRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": -1,
+        "Ile-de-France | Flore": -5,
+        "Nord-Est 2 | Elodie": -1,
+        "Ouest | Margaux": 0,
+        "Sud-Est / Sud-Ouest | Lucie": 0
+      }
+    },
+    {
+      "cle": "sansCharges",
+      "libelle": "Programmes sans charges estimées",
+      "unite": "programme",
+      "slug": "charges",
+      "perimetre": "Programmes diffusés B2C en investissement locatif (patrimonial ou LMNP), hors LMNP géré et Avant-première",
+      "parRegroupement": {
+        "Ile-de-France | Flore": 21,
+        "Sud-Est / Sud-Ouest | Lucie": 5,
+        "Centre-Est / Nord-Est 1 | Constance": 7,
+        "Ouest | Margaux": 3
+      },
+      "total": 36,
+      "lien": "https://outilsmarketing.kaufmanbroad.fr/apps/controleDonnees.html#/charges",
+      "variation": 0,
+      "variationParRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": 0,
+        "Ile-de-France | Flore": 0,
+        "Nord-Est 2 | Elodie": 0,
+        "Ouest | Margaux": 0,
+        "Sud-Est / Sud-Ouest | Lucie": 0
+      }
+    },
+    {
+      "cle": "sansHonoraires",
+      "libelle": "Programmes sans honoraires prescripteurs",
+      "unite": "programme",
+      "slug": "honoraires",
+      "perimetre": "Programmes diffusés B2C et B2B ayant des lots B2B, hors Avant-première",
+      "parRegroupement": {
+        "Ile-de-France | Flore": 1,
+        "Sud-Est / Sud-Ouest | Lucie": 1,
+        "Centre-Est / Nord-Est 1 | Constance": 1,
+        "Ouest | Margaux": 2
+      },
+      "total": 5,
+      "lien": "https://outilsmarketing.kaufmanbroad.fr/apps/controleDonnees.html#/honoraires",
+      "variation": 0,
+      "variationParRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": 0,
+        "Ile-de-France | Flore": 0,
+        "Nord-Est 2 | Elodie": 0,
+        "Ouest | Margaux": 0,
+        "Sud-Est / Sud-Ouest | Lucie": 0
+      }
+    }
+  ],
+  "regroupements": [
+    "Centre-Est / Nord-Est 1 | Constance",
+    "Ile-de-France | Flore",
+    "Nord-Est 2 | Elodie",
+    "Ouest | Margaux",
+    "Sud-Est / Sud-Ouest | Lucie"
+  ],
+  "descriptifs": {
+    "analyses": 169,
+    "relus": 48,
+    "repris": 121,
+    "avecStock": {
+      "total": 25,
+      "forte": 5,
+      "moyenne": 5,
+      "faible": 15,
+      "parRegroupement": {
+        "Ile-de-France | Flore": {
+          "forte": 4,
+          "moyenne": 1,
+          "faible": 5,
+          "total": 10
+        },
+        "Ouest | Margaux": {
+          "forte": 0,
+          "moyenne": 3,
+          "faible": 4,
+          "total": 7
+        },
+        "Nord-Est 2 | Elodie": {
+          "forte": 1,
+          "moyenne": 0,
+          "faible": 2,
+          "total": 3
+        },
+        "Centre-Est / Nord-Est 1 | Constance": {
+          "forte": 0,
+          "moyenne": 1,
+          "faible": 4,
+          "total": 5
+        }
+      }
+    },
+    "sansStock": {
+      "total": 22,
+      "parRegroupement": {
+        "Ile-de-France | Flore": 16,
+        "Ouest | Margaux": 3,
+        "Centre-Est / Nord-Est 1 | Constance": 1,
+        "Nord-Est 2 | Elodie": 1,
+        "Sud-Est / Sud-Ouest | Lucie": 1
+      }
+    },
+    "total": 47,
+    "regroupements": [
+      "Centre-Est / Nord-Est 1 | Constance",
+      "Ile-de-France | Flore",
+      "Nord-Est 2 | Elodie",
+      "Ouest | Margaux",
+      "Sud-Est / Sud-Ouest | Lucie"
+    ],
+    "datePrecedente": "2026-10-08",
+    "date": "2026-10-12",
+    "variation": {
+      "total": -3,
+      "avecStock": {
+        "total": -3,
+        "forte": 0,
+        "moyenne": -2,
+        "faible": -1
+      },
+      "sansStock": 0,
+      "parRegroupement": {
+        "Centre-Est / Nord-Est 1 | Constance": {
+          "total": -3,
+          "forte": -1,
+          "moyenne": 0,
+          "faible": -2,
+          "sansStock": 0
+        },
+        "Ile-de-France | Flore": {
+          "total": 2,
+          "forte": 1,
+          "moyenne": 0,
+          "faible": 1,
+          "sansStock": 0
+        },
+        "Nord-Est 2 | Elodie": {
+          "total": 0,
+          "forte": 0,
+          "moyenne": 0,
+          "faible": 0,
+          "sansStock": 0
+        },
+        "Ouest | Margaux": {
+          "total": -2,
+          "forte": 0,
+          "moyenne": -2,
+          "faible": 0,
+          "sansStock": 0
+        },
+        "Sud-Est / Sud-Ouest | Lucie": {
+          "total": 0,
+          "forte": 0,
+          "moyenne": 0,
+          "faible": 0,
+          "sansStock": 0
+        }
+      }
+    }
+  }
+}

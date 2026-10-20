@@ -23,6 +23,8 @@ const isArchived = prog => norm(prog?.statutBackbone) === 'archive';
 // Codes des dispositifs fiscaux (taxIncentivesCode : « lli,tvaNormale,lmnpGere »), comme les apps 5 et 11.
 const taxCodes = prog => new Set(String(prog?.taxIncentivesCode || '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean));
 const isLmnpGere = prog => taxCodes(prog).has('lmnpgere');
+// Loyer LMNP exigé seulement si le programme est en LMNP (jamais porté au lot), comme l'app 5.
+const needsLmnpRent = prog => taxCodes(prog).has('lmnp');
 const hasInvestmentScheme = prog => { const c = taxCodes(prog); return c.has('patrimonial') || c.has('lmnp'); };
 
 function parseFeesByTypology(raw) {
@@ -99,7 +101,7 @@ export function computeIndicateurs({ programs, lots }) {
         if (prog && prog.isProgramPublishedB2C !== '1') return false;
         if (lot.isUnitPublishedB2C !== '1') return false;
         if (isLmnpGere(prog || {})) return false;
-        return isRentMissing(lot.marketMonthlyRent) || isRentMissing(lot.lmnpMonthlyRent);
+        return isRentMissing(lot.marketMonthlyRent) || (needsLmnpRent(prog) && isRentMissing(lot.lmnpMonthlyRent));
     });
 
     // Onglets 2 et 4 — getFilteredPrograms (programme diffusé B2C par défaut).
@@ -144,7 +146,7 @@ export function computeIndicateurs({ programs, lots }) {
         },
         {
             cle: 'sansLoyer', libelle: 'Lots sans loyer', unite: 'lot', slug: 'loyers',
-            perimetre: 'Loyer patrimonial ou LMNP manquant, lots diffusés B2C, hors LMNP géré et Avant-première',
+            perimetre: 'Loyer patrimonial manquant, ou loyer LMNP sur un programme en LMNP, lots diffusés B2C, hors LMNP géré et Avant-première',
             parRegroupement: countBy(sansLoyer, l => l.agencyRegions)
         },
         {

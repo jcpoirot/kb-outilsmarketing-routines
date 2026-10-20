@@ -20,14 +20,10 @@ const isEmpty = v => !v || String(v).trim() === '';
 const isRentMissing = v => isEmpty(v) || parseFloat(v) === 0;
 const norm = v => String(v || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[\s-]/g, '');
 const isArchived = prog => norm(prog?.statutBackbone) === 'archive';
-const isLmnpGere = prog => {
-    const t = (prog?.taxIncentives || '').trim();
-    return t === 'LMNP géré' || /\[lmnpgere\]/i.test(t);
-};
-const hasInvestmentScheme = prog => {
-    const t = (prog?.taxIncentives || '').toLowerCase();
-    return /\[patrimonial\]/.test(t) || /\[lmnp\]/.test(t);
-};
+// Codes des dispositifs fiscaux (taxIncentivesCode : « lli,tvaNormale,lmnpGere »), comme les apps 5 et 11.
+const taxCodes = prog => new Set(String(prog?.taxIncentivesCode || '').toLowerCase().split(',').map(s => s.trim()).filter(Boolean));
+const isLmnpGere = prog => taxCodes(prog).has('lmnpgere');
+const hasInvestmentScheme = prog => { const c = taxCodes(prog); return c.has('patrimonial') || c.has('lmnp'); };
 
 function parseFeesByTypology(raw) {
     if (!raw) return [];

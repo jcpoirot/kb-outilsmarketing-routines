@@ -1,0 +1,1417 @@
+{
+  "date": "2026-10-22",
+  "programmes": [
+    {
+      "idProgram": "11051",
+      "hash": "531c2105f97ca07e",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "18531",
+      "hash": "2958102778c86e5d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "19501",
+      "hash": "24575244437b41bf",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "21071",
+      "hash": "718dfcc5eee5472f",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "21561",
+      "hash": "ada4f7f5abf435fd",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22181",
+      "hash": "3924fe2137a601a5",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22781",
+      "hash": "ec384e92f3408c82",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22791",
+      "hash": "f360490a1b227614",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22901",
+      "hash": "052e64a5be3b8d3f",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22931",
+      "hash": "98ab932e1f7a417c",
+      "verdictDu": "2026-10-08",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22961",
+      "hash": "6470a0c61c1711a2",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "23001",
+      "hash": "0fec4835907d93c6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "27161",
+      "hash": "36475813a0d7bf3d",
+      "verdictDu": "2026-10-08",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "une dernière place de parking sécurisée en sous-sol est encore disponible",
+          "constat": "Aucun lot diffusé disponible dans la famille (logements comme autres lots).",
+          "commentaire": "Retirer du texte la mention d'un lot disponible, ou vérifier la diffusion du lot."
+        }
+      ]
+    },
+    {
+      "idProgram": "27191",
+      "hash": "65bcc89d994259e1",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "Kaufman & Broad vous propose son dernier parking.",
+          "constat": "Aucun lot diffusé disponible dans la famille du programme.",
+          "commentaire": "Retirer la mention du dernier parking ou diffuser le lot concerné."
+        }
+      ]
+    },
+    {
+      "idProgram": "28001",
+      "hash": "60d82353d85d097f",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28011",
+      "hash": "e9e60062502ce09a",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28071",
+      "hash": "b8d61ed841c711f6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28511",
+      "hash": "0fda0ebcf942e90a",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28621",
+      "hash": "e1676c06085b8165",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28781",
+      "hash": "d324a2bcc5ec7b10",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28911",
+      "hash": "021177e3cff7a99d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29001",
+      "hash": "88247eaed937c3f0",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29002",
+      "hash": "94b3713b90b34399",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29031",
+      "hash": "5071441944ff8def",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29061",
+      "hash": "61665195a903236d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29171",
+      "hash": "ad6c797bcdefdb9b",
+      "verdictDu": "2026-10-08",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29251",
+      "hash": "c00d751eb0e537e6",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29271",
+      "hash": "54a4b922e255316e",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29311",
+      "hash": "374a76448a2637a6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29381",
+      "hash": "f777b2106300bf1a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29382",
+      "hash": "f420ae12027d1c4b",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29431",
+      "hash": "120b5bd73433ea2c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29451",
+      "hash": "62aa6b1939ba212d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29551",
+      "hash": "56855c5dabe88e6c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29571",
+      "hash": "c35a65f75f9cabf2",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29681",
+      "hash": "4b9cfb78820e15a5",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29691",
+      "hash": "f49ad22fa23c2fb0",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29721",
+      "hash": "d0291ea2c2970b14",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29731",
+      "hash": "1e90b4bb555ecaae",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29751",
+      "hash": "7fbf6a44e8b8cf5f",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29781",
+      "hash": "874de0c6aa0fb545",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29831",
+      "hash": "10912f6016625459",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29871",
+      "hash": "6791e52b2494f1b6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29881",
+      "hash": "547e9fc33e632325",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29891",
+      "hash": "93ad35b1681cdcee",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "deux bâtiments proposant des appartements, du 2 au 4 pièces",
+          "constat": "Le stock de la famille ne compte que des T3 (7) comme appartements : pas de T2 ni de T4 en appartement.",
+          "commentaire": "Ajuster la gamme d'appartements annoncée au stock réellement diffusé."
+        }
+      ]
+    },
+    {
+      "idProgram": "29941",
+      "hash": "e66156cb5801767c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29951",
+      "hash": "abc06574893be968",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29953",
+      "hash": "56104e7a87a52202",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29961",
+      "hash": "7e0bf4bd3d428b60",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29981",
+      "hash": "dbe2b41fc6a0158e",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30021",
+      "hash": "9b397136ae7c0fbe",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30031",
+      "hash": "7d7bc85dd1116ad6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30051",
+      "hash": "547ac1c48f6ae1eb",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "33121",
+      "hash": "5da7cbef0bb018a6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "allant du studio compact au T1 bis plus spacieux",
+          "constat": "Le stock diffusé ne compte que des studios (43) ; aucun T1 bis.",
+          "commentaire": "Retirer la mention du T1 bis ou vérifier la typologie des lots."
+        }
+      ]
+    },
+    {
+      "idProgram": "35301",
+      "hash": "c7b61c9a992b2ca8",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "35371",
+      "hash": "45cdb48c66d8a684",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "35511",
+      "hash": "3767d6ca6058e2da",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38391",
+      "hash": "91a61f3db05141f4",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38441",
+      "hash": "e409dff4a0b775e7",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38461",
+      "hash": "dde4717552edfcb4",
+      "verdictDu": "2026-10-12",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42301",
+      "hash": "c4f62d03631f3189",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "appartements neufs du 2 au 4 pièces",
+          "constat": "Le stock diffusé compte des T3 (2) et T4 (2) en appartements ; aucun T2.",
+          "commentaire": "Ajuster la gamme annoncée (3 et 4 pièces) au stock diffusé."
+        }
+      ]
+    },
+    {
+      "idProgram": "42401",
+      "hash": "564c09b06984b561",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42411",
+      "hash": "ea3749c452382813",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42461",
+      "hash": "376b775d5bfac44f",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42471",
+      "hash": "ff3fa9b4aea307e6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42481",
+      "hash": "dbc1a22389a94cbd",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42491",
+      "hash": "a917c2004641539a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42501",
+      "hash": "c9d1960028ebd756",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42511",
+      "hash": "b168838b1aae2db1",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42521",
+      "hash": "71b6610cfd0fe25c",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42541",
+      "hash": "70d9844bef2e7d99",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "49651",
+      "hash": "bc1308928e517f93",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Le programme propose également une maison 4 pièces",
+          "constat": "Le stock de la famille ne compte que des T3 (10) et T4 (3) en appartements ; aucune maison.",
+          "commentaire": "Retirer la mention de la maison ou diffuser le lot concerné."
+        }
+      ]
+    },
+    {
+      "idProgram": "49701",
+      "hash": "4f34bfea5c30a915",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "du 2 au 4 pièces, dont quelques duplex",
+          "constat": "Le stock de la famille ne compte que des T3 (10) et T4 (3) ; aucun T2.",
+          "commentaire": "Ajuster la gamme annoncée (3 et 4 pièces) au stock diffusé."
+        },
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Le programme propose également une maison 4 pièces",
+          "constat": "Le stock de la famille ne compte aucune maison (T3 ×10, T4 ×3 en appartements).",
+          "commentaire": "Retirer la mention de la maison ou diffuser le lot concerné."
+        }
+      ]
+    },
+    {
+      "idProgram": "49771",
+      "hash": "064d9e9fba50b280",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51491",
+      "hash": "c29cb2b5c6456f4b",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51501",
+      "hash": "1b107d722bcc7f67",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51541",
+      "hash": "8e1c3caed255691b",
+      "verdictDu": "2026-10-15",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51551",
+      "hash": "c7763e5890af133b",
+      "verdictDu": "2026-10-15",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51561",
+      "hash": "7984a2e070857914",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "52631",
+      "hash": "e78b46ac98b3c5b3",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "52661",
+      "hash": "e9b247b9cbdaa517",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "54901",
+      "hash": "2080cdcc36530979",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "54911",
+      "hash": "7647e0e6968d1cdb",
+      "verdictDu": "2026-10-15",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "55051",
+      "hash": "918de0ca2e9a542a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56141",
+      "hash": "ec7ef3a49fa300c0",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56261",
+      "hash": "43f6aab5441ae850",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56301",
+      "hash": "0d0b6ee6c8f72ff0",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "57001",
+      "hash": "0247bc7b88e005cb",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "57031",
+      "hash": "0e53276b0c2886e1",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59361",
+      "hash": "861595684bb028b4",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59481",
+      "hash": "94670c1981b481b6",
+      "verdictDu": "2026-10-19",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59491",
+      "hash": "36af05dd02ba64b2",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59511",
+      "hash": "26e05516d18bb280",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59531",
+      "hash": "40a03fbc9487e0ef",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59561",
+      "hash": "97a31abe4516150a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "65151",
+      "hash": "57e2ee0142dda6d7",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "65161",
+      "hash": "5bc9539a889ab971",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "statut",
+          "severite": "moyenne",
+          "extrait": "Travaux en cours !",
+          "constat": "La résidence est livrée (53 logements Livrés sur 78) et la famille est en Livraison rapide.",
+          "commentaire": "Remplacer la mention des travaux en cours par la livraison immédiate."
+        },
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "du studio au 4 pièces",
+          "constat": "Le stock de la famille ne compte qu'un T4 ; aucun studio, T2 ni T3.",
+          "commentaire": "Adapter le descriptif au dernier 4 pièces disponible."
+        }
+      ]
+    },
+    {
+      "idProgram": "65171",
+      "hash": "0e38377bc0d60afd",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "65231",
+      "hash": "18a4910c9cd6f3ba",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "65271",
+      "hash": "f80b12960fb9649d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "70061",
+      "hash": "25abdc6a9322f525",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71121",
+      "hash": "3411b8e386afb4b3",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71451",
+      "hash": "890a7655bd0e923d",
+      "verdictDu": "2026-10-08",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "Dernières opportunités : studio et 3 pièces",
+          "constat": "Aucun lot diffusé disponible dans la famille (résidence entièrement livrée).",
+          "commentaire": "Retirer la mention de dernières opportunités."
+        }
+      ]
+    },
+    {
+      "idProgram": "71501",
+      "hash": "53282d2b45dfc74c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71521",
+      "hash": "47d0c4f2c3400250",
+      "verdictDu": "2026-10-08",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71531",
+      "hash": "2aea4d5d1f5ef6e3",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71541",
+      "hash": "882c328af89476ff",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71611",
+      "hash": "f3bdb0f93713ecd9",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71691",
+      "hash": "5fb7add2172be999",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71901",
+      "hash": "bd954fb3ab5d5c06",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71931",
+      "hash": "5f852dbef01ba0d0",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71971",
+      "hash": "bf02217e58de14a8",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72011",
+      "hash": "95758727754cc67e",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72091",
+      "hash": "b84700985fd43c5c",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72101",
+      "hash": "3c5d87b54518d95d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Déclinés du 2 au 4 pièces",
+          "constat": "Le stock de la famille ne compte que des T3 (4) et T4 (1) ; aucun T2.",
+          "commentaire": "Ajuster la gamme annoncée (3 et 4 pièces) au stock diffusé."
+        }
+      ]
+    },
+    {
+      "idProgram": "72151",
+      "hash": "e37f4118e1b94a64",
+      "verdictDu": "2026-10-22",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "Une dernière opportunité pour devenir propriétaire à Barneville-Carteret",
+          "constat": "Aucun lot diffusé disponible dans la famille ; le texte indique lui-même « Résidence entièrement commercialisée ».",
+          "commentaire": "Retirer la mention de dernière opportunité."
+        }
+      ]
+    },
+    {
+      "idProgram": "72171",
+      "hash": "1215c29e8a940b93",
+      "verdictDu": "2026-10-15",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72181",
+      "hash": "6558793a90786cc1",
+      "verdictDu": "2026-10-19",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72291",
+      "hash": "c53020a730dd190c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72371",
+      "hash": "29acaeec1a10cb28",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72391",
+      "hash": "ff099eeec24a5309",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72401",
+      "hash": "6ef2ba940b622dd1",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72411",
+      "hash": "733aaa9bec1fd9bb",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72421",
+      "hash": "f3d0a03cb27f8f2a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72431",
+      "hash": "705ef3b46cdcb9ab",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72451",
+      "hash": "aed99817981a5f2c",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72461",
+      "hash": "fd4266a91508fab6",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72491",
+      "hash": "cb0f70edab786b04",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72521",
+      "hash": "6f4da6351bc65b36",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72541",
+      "hash": "84dc19e0307d9699",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72571",
+      "hash": "c40ba6534e0bc339",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72581",
+      "hash": "7819e461bb02dc89",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72601",
+      "hash": "55238631b83be7ec",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72651",
+      "hash": "d21f840a3681e607",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72671",
+      "hash": "1b5f4112af8962bd",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72681",
+      "hash": "d619499d139ef223",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72691",
+      "hash": "e582c21616362d0d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72721",
+      "hash": "fc0f9d01f41d10f4",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72731",
+      "hash": "a1f15e78f08644cf",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72741",
+      "hash": "b1bc88370369474f",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72781",
+      "hash": "b14c6e2b509b4361",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72791",
+      "hash": "b247e7957b09afe9",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72811",
+      "hash": "32ade3ba8569ad27",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Elle accueille également deux maisons de 2 chambres",
+          "constat": "Le stock du programme ne compte que des virtuels Studio, T2, T3, T4 : aucune maison.",
+          "commentaire": "Vérifier que les deux maisons de 2 chambres sont bien prévues et diffusées, sinon retirer la mention."
+        }
+      ]
+    },
+    {
+      "idProgram": "72821",
+      "hash": "1f7a2d8cde0d8b9a",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72831",
+      "hash": "d913a6e9da06b061",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72851",
+      "hash": "409f934a34dd8626",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72881",
+      "hash": "8fc828ad9a76ec4f",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72901",
+      "hash": "8585adeb2ff1bb56",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72921",
+      "hash": "5a2f71415971f43c",
+      "verdictDu": "2026-10-19",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72931",
+      "hash": "ad28a104a45a262f",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73101",
+      "hash": "5f5d427c9b78deef",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73111",
+      "hash": "8566147e999f6899",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73121",
+      "hash": "ae6e6f14fe535aef",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73141",
+      "hash": "6ceed4eb4d50169d",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73161",
+      "hash": "34e10726356cfdd1",
+      "verdictDu": "2026-10-19",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73171",
+      "hash": "1f5d618a36999fbe",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "75071",
+      "hash": "44c45b718c74bf90",
+      "verdictDu": "2026-10-08",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "75091",
+      "hash": "fa9b9b879488605e",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "75151",
+      "hash": "9b1112e6d55d736b",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "81291",
+      "hash": "fee651ea3ae76fcf",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "98111",
+      "hash": "975801fc7fc46fb8",
+      "verdictDu": "2026-10-22",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    }
+  ]
+}

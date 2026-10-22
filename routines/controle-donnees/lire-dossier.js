@@ -60,5 +60,15 @@ for (const p of aRelire.slice((numero - 1) * TAILLE, numero * TAILLE)) {
         out.push(`Titre événement : ${p.evenement.titre || '(vide)'}`,
             `Description événement :\n${p.evenement.description || '(vide)'}`);
     }
+    // Textes complémentaires (dossiers antérieurs au 22/10/2026 : absents). Vide = compté par le
+    // script, ne rien signaler.
+    const c = p.complements;
+    if (c) {
+        const long = (cle, libelle) => (p.complementsRepris?.[cle]
+            ? `${libelle} : identique à celui de ${p.complementsRepris[cle]} (même famille) — jugé sur ${p.complementsRepris[cle]} seulement`
+            : c[cle] ? `${libelle} :\n${c[cle]}` : `${libelle} : (vide)`);
+        out.push(long('annonces', 'Texte annonces'), long('details', 'Détails programme'),
+            `Forces de programme : ${c.forces?.length ? c.forces.join(' ; ') : '(vide)'}`);
+    }
 }
 console.log(out.join('\n'));

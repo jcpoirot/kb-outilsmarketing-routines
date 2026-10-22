@@ -11,10 +11,36 @@ Dépôt **privé** (chiffres internes), branche `main` seule : rien n'y est dép
 
 | Routine | Dossier | Planification | Contenu |
 |---|---|---|---|
-| Contrôle des données | `routines/controle-donnees/` | lundi et jeudi, 5 h UTC (6 h à Paris en hiver, 7 h en été) | offre diffusée B2C, problèmes de données des Apps 1 et 5 par regroupement d'agences, cohérence des descriptifs de programmes avec leur stock (Excel joint), variations, liens vers les listes |
+| Contrôle des données | `routines/controle-donnees/` | lundi et jeudi, 5 h UTC (6 h à Paris en hiver, 7 h en été) | offre diffusée B2C, problèmes de données des Apps 1 et 5 par regroupement d'agences, cohérence des descriptifs de programmes avec leur stock (Excel joint), variations, liens vers les listes ; plus un mail par regroupement, limité à ses chiffres |
 
 Chaque routine a son dossier : `ROUTINE.md` (le prompt suivi par la routine cloud),
 `config.json` (nom, destinataires, adresse de test), ses scripts.
+
+### Mails par regroupement (Contrôle des données)
+
+En plus du mail général, chaque regroupement d'agences reçoit un mail limité à ses chiffres
+(offre diffusée, problèmes de données avec liens filtrés sur le regroupement, descriptifs et
+Excel de ses seuls programmes) et à sa synthèse, rédigée par Claude. Sous le tableau des
+descriptifs, le mail régional (pas le général) liste les programmes en écart : liens Web et PIM
+(`uuid` du programme), extrait en cause et constat, abrégés. Destinataires dans
+`routines/controle-donnees/config.json`, clé = nom du regroupement avant le « | » (accents et
+casse indifférents, le responsable peut changer sans toucher la config) :
+
+```json
+"destinatairesParRegroupement": {
+  "Ile-de-France": ["prenom.nom@ketb.com"],
+  "Ouest": []
+}
+```
+
+- Liste vide : pas de mail régional en prod pour ce regroupement.
+- Test et recette : un mail par clé de la config, liste vide comprise, envoyé au seul
+  `destinataireTest`, avec un bandeau qui dit à qui il partirait en prod.
+- Un regroupement absent de la config, ou une clé sans regroupement dans le rapport (renommage
+  dans les données), est signalé en « Alerte » par `email.js` et `lire-regroupements.js`.
+- Fichiers : `AAAA-MM-JJ.<slug>.synthese.md` (historisé), `.email.html`, `.email.json`,
+  `.descriptifs.xlsx` (slug : `ile-de-france`, `centre-est-nord-est-1`…).
+- La répartition par état d'avancement n'existe que dans le mail général.
 
 ## Modes
 
@@ -42,7 +68,8 @@ export NODE_OPTIONS=--use-system-ca
 npm run controle-donnees:analyse -- --cache      # rapport de test et dossier des descriptifs dans out/ (--cache : CSV gardés dans out/cache)
 npm run controle-donnees:dossier -- 1            # lot 1 des descriptifs à relire, en texte (étape Claude)
 npm run controle-donnees:descriptifs             # consolide les verdicts relus-*.json : descriptifs.json, Excel, agrégats
-npm run controle-donnees:email                   # out/controle-donnees/AAAA-MM-JJ.email.html, à ouvrir dans un navigateur
+node routines/controle-donnees/lire-regroupements.js   # chiffres de chaque regroupement, pour les synthèses régionales (étape Claude)
+npm run controle-donnees:email                   # out/controle-donnees/AAAA-MM-JJ.email.html (et un .email.html par regroupement), à ouvrir dans un navigateur
 npm run parite -- --cache                        # chiffres de la routine = chiffres des apps ?
 ```
 
@@ -91,7 +118,11 @@ message qui le dit.
 ### Descriptifs et stock
 
 Cohérence entre les textes de chaque programme diffusé B2C (descriptif, titre et description de
-l'événement) et le stock **diffusé** disponible de sa famille (parent et enfants). Règles : section « Règles des descriptifs » de
+l'événement, texte annonces `listingSitesDescription`, détails `programDetails`, forces de
+programme `programStrengths`) et le stock **diffusé** disponible de sa famille (parent et
+enfants). Les programmes dont le descriptif, le texte annonces ou les forces de programme sont
+vides sont comptés à part par le script (« Champs vides » : mails, lignes de l'Excel), enfants
+compris ; les détails, facultatifs, ne le sont pas. `unitsOverview` n'est pas encore analysé. Règles : section « Règles des descriptifs » de
 `routines/controle-donnees/ROUTINE.md` ; notion « Cohérence descriptif / stock » de
 `outilsMarketing/.claude/rules/ontologie.md`.
 

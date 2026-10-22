@@ -1,8 +1,9 @@
 // Cohérence descriptifs / stock — partie déterministe.
 //
 // Pour chaque programme de programsDescriptions.csv (programmes diffusés B2C), prépare le
-// dossier que Claude relit : texte du descriptif sans HTML, famille parent / enfants, stock du
-// programme et de sa famille, offre, statut, et un `hash` du tout. Le jugement sur le texte
+// dossier que Claude relit : textes sans HTML (descriptif, événement, texte annonces, détails,
+// forces de programme), famille parent / enfants, stock du programme et de sa famille, offre,
+// statut, champs vides, et un `hash` du tout. Le jugement sur le texte
 // (anomalies, sévérité) est l'étape Claude du ROUTINE.md ; ce contrôle n'a pas d'équivalent
 // dans les apps (pas de parité). Notions : outilsMarketing/.claude/rules/ontologie.md
 // (« Famille de programmes », « Cohérence descriptif / stock »).
@@ -197,6 +198,19 @@ export function stockText(s) {
 
 // ── Dossier ─────────────────────────────────────────────────────────────────────────────
 
+// Textes de programsDescriptions.csv analysés en plus du descriptif (overrideMainDescriptionB2B,
+// jamais rempli, et unitsOverview, aux données pas encore fiables, sont ignorés). `videSignale` :
+// compté dans les champs vides (programDetails n'est pas obligatoire). `champ` : nom repris dans les verdicts, l'Excel et les mails.
+export const TEXTES_COMPLEMENTAIRES = [
+    { cle: 'annonces', colonne: 'listingSitesDescription', champ: 'texte annonces', videSignale: true },
+    { cle: 'details', colonne: 'programDetails', champ: 'détails programme', videSignale: false },
+    { cle: 'forces', colonne: 'programStrengths', champ: 'forces de programme', videSignale: true }
+];
+// Champs signalés quand ils sont vides (texte sans HTML vide), sur chaque programme, enfant compris.
+export const CHAMPS_VIDES = ['descriptif', ...TEXTES_COMPLEMENTAIRES.filter(t => t.videSignale).map(t => t.champ)];
+// Textes longs : repris d'un programme de la famille, ils ne sont jugés que sur lui (comme le descriptif).
+const TEXTES_LONGS = ['annonces', 'details'];
+
 export function buildDossier({ programs, lots, otherUnits, programsDescriptions }, day, previous) {
     const programsMap = Object.fromEntries(programs.map(p => [p.idProgram, p]));
     const parentOf = {}, children = {};
@@ -255,6 +269,16 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
     for (const d of programsDescriptions) textes[d.idProgram] = htmlToText(d.description);
     const byText = {};
     for (const [id, t] of Object.entries(textes)) if (t) (byText[t] ||= []).push(id);
+    // Textes complémentaires ; forces de programme = liste d'étiquettes séparées par des virgules.
+    const complements = {};
+    for (const d of programsDescriptions) {
+        complements[d.idProgram] = Object.fromEntries(TEXTES_COMPLEMENTAIRES.map(({ cle, colonne }) => [cle,
+            cle === 'forces'
+                ? String(d[colonne] || '').split(',').map(x => x.trim()).filter(Boolean)
+                : htmlToText(d[colonne])]));
+    }
+    const byLong = Object.fromEntries(TEXTES_LONGS.map(cle => [cle, {}]));
+    for (const [id, c] of Object.entries(complements)) for (const cle of TEXTES_LONGS) if (c[cle]) (byLong[cle][c[cle]] ||= []).push(id);
 
     const prevById = Object.fromEntries((previous?.programmes || []).map(e => [String(e.idProgram), e]));
 
@@ -279,6 +303,17 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
         // Descriptif identique à celui d'un programme de la famille : jugé une seule fois, sur le parent.
         const porteur = memeFamille.length ? porteurOf([id, ...memeFamille]) : id;
         const copies = identiques.filter(o => !fam.membres.includes(o));
+        // Textes longs repris d'un programme de la famille : { annonces: '72101' } → jugé sur 72101.
+        const comp = complements[id];
+        const reprisDe = {};
+        for (const cle of TEXTES_LONGS) {
+            const memes = comp[cle] ? (byLong[cle][comp[cle]] || []).filter(o => o !== id && fam.membres.includes(o)) : [];
+            const porteurTexte = memes.length ? porteurOf([id, ...memes]) : id;
+            if (porteurTexte !== id) reprisDe[cle] = porteurTexte;
+        }
+        const champsVides = [!texte && 'descriptif',
+            ...TEXTES_COMPLEMENTAIRES.filter(t => t.videSignale && !(Array.isArray(comp[t.cle]) ? comp[t.cle].length : comp[t.cle])).map(t => t.champ)]
+            .filter(Boolean);
         const offre = {
             ref: p.offerRef || null,
             debut: p.offerStartDate || null,
@@ -296,6 +331,7 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             departement: p.departmentCode || null,
             agencyRegions: p.agencyRegions || null,
             webLink: p.webLink || `https://www.kaufmanbroad.fr/program/${id}`,
+            uuid: p.uuid || null,   // lien PIM des mails régionaux
             statutProgramme: p.programStatus || null,
             parent,
             famille: fam.membres.length > 1 ? fam.membres : [],
@@ -307,6 +343,9 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             // Texte identique à celui d'un programme d'une AUTRE famille : copie possible.
             texteIdentiqueA: copies.map(o => ({ idProgram: o, memeFamille: false })),
             evenement,
+            complements: comp,
+            complementsRepris: reprisDe,
+            champsVides,
             offre,
             // Sans stock : aucun lot diffusé disponible dans la famille, logements (virtuels compris)
             // ou autres lots.
@@ -316,13 +355,15 @@ export function buildDossier({ programs, lots, otherUnits, programsDescriptions 
             stockFamille
         };
         dossier.hash = createHash('sha256').update(JSON.stringify({
-            texte, evenement, ville: dossier.ville, statut: dossier.statutProgramme, parent, offre,
+            texte, evenement, complements: comp, complementsRepris: reprisDe, ville: dossier.ville, statut: dossier.statutProgramme, parent, offre,
             descriptifRepris: dossier.descriptifRepris,
             texteIdentiqueA: dossier.texteIdentiqueA, stock, stockFamille
         })).digest('hex').slice(0, 16);
         const prev = prevById[id];
-        // Rien à juger : descriptif repris du parent et pas d'événement.
-        dossier.rienAJuger = !!dossier.descriptifRepris && !evenement;
+        // Rien à juger : descriptif repris du parent, pas d'événement, textes longs repris ou vides,
+        // ni forces de programme. Les champs vides sont comptés par le script, pas par Claude.
+        dossier.rienAJuger = !!dossier.descriptifRepris && !evenement
+            && TEXTES_LONGS.every(cle => !comp[cle] || reprisDe[cle]) && !comp.forces.length;
         dossier.aRelire = !dossier.rienAJuger && !(prev && prev.hash === dossier.hash);
         return dossier;
     });

@@ -9,5 +9,12 @@
     "MCONDROYER@ketb.com",
     "jcpoirot.consultant-externe@ketb.com"
   ],
-  "destinataireTest": "jcpoirot@dimake.io"
+  "destinataireTest": "jcpoirot@dimake.io",
+  "destinatairesParRegroupement": {
+    "Centre-Est / Nord-Est 1": ["CDURET@ketb.com","NGRAND@ketb.com"],
+    "Ile-de-France": ["fdesmarest@ketb.com","mbourdeles@ketb.com","MLESS@ketb.com","ESALAUN@ketb.com"],
+    "Nord-Est 2": ["edagnet@ketb.com","MREALAN@ketb.com"],
+    "Ouest": ["MJOLY@ketb.com","MDEMOULIN@ketb.com"],
+    "Sud-Est / Sud-Ouest": ["LMARTINET@ketb.com","NBENKADA@ketb.com","MCAMANDONE@kaufmanbroad.onmicrosoft.com","MFOGLIARINI@ketb.com"]
+  }
 }

@@ -8,15 +8,18 @@
 // Sorties :
 //   <date>.descriptifs.json   un verdict par programme (historisé : il porte les hash)
 //   <date>.descriptifs.xlsx   le détail, joint au mail
-//   <date>.json               reçoit le bloc `descriptifs` (agrégats et variations)
+//   <date>.<slug>.descriptifs.xlsx   le détail d'un regroupement, joint à son mail régional
+//   <date>.json               reçoit le bloc `descriptifs` (agrégats et variations, champs vides
+//                             compris : descriptifs.champsVides)
 
-import { readdir, writeFile } from 'node:fs/promises';
+import { readdir, writeFile, rm } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { routineContext, readJson, previousFile, previousReport } from '../../lib/routine.js';
 import { writeXlsx } from '../../lib/xlsx.js';
-import { stockText } from './descriptifs.js';
+import { stockText, CHAMPS_VIDES } from './descriptifs.js';
 import { SANS_REGROUPEMENT } from './indicateurs.js';
+import { slugRegroupement } from './regroupements.js';
 
 const SEVERITES = ['forte', 'moyenne', 'faible'];
 const ctx = routineContext('controle-donnees');
@@ -112,12 +115,32 @@ agg.variation = {
     total: d(agg.total, prevAgg?.total),
     avecStock: Object.fromEntries(['total', ...SEVERITES].map(k => [k, d(agg.avecStock[k], prevAgg?.avecStock?.[k])])),
     sansStock: d(agg.sansStock.total, prevAgg?.sansStock?.total),
-    parRegroupement: Object.fromEntries(agg.regroupements.map(rg => [rg, {
+    // Regroupements du rapport précédent compris : un regroupement revenu à zéro garde sa baisse.
+    parRegroupement: Object.fromEntries([...new Set([...agg.regroupements, ...(prevAgg?.regroupements || [])])].map(rg => [rg, {
         ...Object.fromEntries(['total', ...SEVERITES].map(k => [k,
             d(agg.avecStock.parRegroupement[rg]?.[k] || 0, prevAgg?.avecStock?.parRegroupement?.[rg]?.[k])])),
         sansStock: d(agg.sansStock.parRegroupement[rg] || 0, prevAgg?.sansStock?.parRegroupement?.[rg])
     }]))
 };
+// Champs vides : comptés par le script d'après le dossier (pas un verdict de Claude), à part des
+// écarts avec le stock. Un programme compte une fois au total, et une fois par champ vide.
+const vides = { total: 0, parChamp: {}, parRegroupement: {} };
+for (const p of dossier.programmes) {
+    if (!p.champsVides?.length) continue;
+    const r = vides.parRegroupement[p.agencyRegions || SANS_REGROUPEMENT] ||= { total: 0 };
+    vides.total++; r.total++;
+    for (const c of p.champsVides) { vides.parChamp[c] = (vides.parChamp[c] || 0) + 1; r[c] = (r[c] || 0) + 1; }
+}
+const prevVides = prevAgg?.champsVides;
+const dv = (cur, prev) => (prevVides ? cur - (prev || 0) : null);
+vides.variation = {
+    total: dv(vides.total, prevVides?.total),
+    parChamp: Object.fromEntries(CHAMPS_VIDES.map(c => [c, dv(vides.parChamp[c] || 0, prevVides?.parChamp?.[c])])),
+    parRegroupement: Object.fromEntries([...new Set([...Object.keys(vides.parRegroupement), ...Object.keys(prevVides?.parRegroupement || {})])]
+        .map(rg => [rg, Object.fromEntries(['total', ...CHAMPS_VIDES].map(k =>
+            [k, dv(vides.parRegroupement[rg]?.[k] || 0, prevVides?.parRegroupement?.[rg]?.[k])]))]))
+};
+agg.champsVides = vides;
 report.descriptifs = agg;
 await writeFile(ctx.file('json'), JSON.stringify(report, null, 2) + '\n');
 
@@ -137,12 +160,13 @@ const lignes = programmes.flatMap(e => e.anomalies.map(a => ({ e, a, sansStock: 
         || (x.p.agencyRegions || '').localeCompare(y.p.agencyRegions || '', 'fr')
         || x.e.idProgram.localeCompare(y.e.idProgram, 'fr', { numeric: true }));
 const asNumber = v => (v && /^\d+$/.test(v) ? Number(v) : v || null);
+const lien = p => (p.webLink ? { formula: `=HYPERLINK("${p.webLink.replace(/"/g, '""')}","Voir")`, value: 'Voir' } : null);
 const rows = lignes.map(({ e, a, p }) => [
     e.sansStock ? 'Sans stock (fin de liste)' : PRIORITE[a.severite],
     p.agencyRegions || SANS_REGROUPEMENT,
     asNumber(p.idProgram),
     p.nom,
-    p.webLink ? { formula: `=HYPERLINK("${p.webLink.replace(/"/g, '""')}","Voir")`, value: 'Voir' } : null,
+    lien(p),
     p.ville,
     asNumber(p.parent),
     p.statutProgramme,
@@ -153,10 +177,31 @@ const rows = lignes.map(({ e, a, p }) => [
     a.constat,
     a.commentaire
 ]);
+// Champs vides : une ligne par programme, après les écarts.
+rows.push(...dossier.programmes.filter(p => p.champsVides?.length)
+    .sort((x, y) => (x.agencyRegions || '').localeCompare(y.agencyRegions || '', 'fr')
+        || String(x.idProgram).localeCompare(String(y.idProgram), 'fr', { numeric: true }))
+    .map(p => ['Champs vides', p.agencyRegions || SANS_REGROUPEMENT, asNumber(p.idProgram), p.nom, lien(p), p.ville,
+        asNumber(p.parent), p.statutProgramme, 'vide', `Vides : ${p.champsVides.join(', ')}`,
+        (p.famille.length ? 'Famille : ' : '') + stockText(p.stockFamille), '', 'Renseigner ces champs dans le PIM.']));
 await writeFile(ctx.file('descriptifs.xlsx'),
     writeXlsx({ sheetName: 'Descriptifs et stock', tableName: 'DescriptifsStock', columns: COLUMNS, rows }));
 
+// Un Excel par regroupement, joint à son mail régional : ses seules lignes. Ceux d'une
+// exécution précédente du jour sont effacés (un regroupement peut ne plus avoir d'écart).
+const suffixeRg = '.descriptifs.xlsx';
+for (const f of (await readdir(ctx.outDir)).filter(f => f.startsWith(`${ctx.date}.`) && f.endsWith(suffixeRg) && f !== `${ctx.date}${suffixeRg}`)) {
+    await rm(path.join(ctx.outDir, f));
+}
+for (const rg of agg.regroupements.filter(rg => rg !== SANS_REGROUPEMENT)) {
+    const rowsRg = rows.filter(r => r[1] === rg);
+    if (!rowsRg.length) continue;
+    await writeFile(ctx.file(`${slugRegroupement(rg)}${suffixeRg}`),
+        writeXlsx({ sheetName: 'Descriptifs et stock', tableName: 'DescriptifsStock', columns: COLUMNS, rows: rowsRg }));
+}
+
 console.log(`Descriptifs : ${agg.analyses} programmes (${agg.relus} relus, ${agg.repris} repris), `
     + `${agg.total} en écart — avec stock ${agg.avecStock.total} (forte ${agg.avecStock.forte}, moyenne ${agg.avecStock.moyenne}, `
-    + `faible ${agg.avecStock.faible}), sans stock ${agg.sansStock.total} ; ${rows.length} ligne(s) dans l'Excel`);
+    + `faible ${agg.avecStock.faible}), sans stock ${agg.sansStock.total} ; ${vides.total} programme(s) aux champs vides `
+    + `(${CHAMPS_VIDES.map(c => `${c} ${vides.parChamp[c] || 0}`).join(', ')}) ; ${rows.length} ligne(s) dans l'Excel`);
 console.log(`Excel : ${ctx.file('descriptifs.xlsx')}`);

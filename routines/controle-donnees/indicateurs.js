@@ -120,6 +120,10 @@ export function computeIndicateurs({ programs, lots }) {
         return (lotCountsByProg[p.idProgram] || { b2b: 0 }).b2b > 0;
     });
 
+    // Onglet 8 — getFilteredPrograms(8) + getErrorProgsNoTaxZone : programmes diffusés B2C
+    // sans taxZone, Avant-première incluse (défaut de l'onglet).
+    const sansZoneFiscale = programs.filter(p => !isArchived(p) && p.isProgramPublishedB2C === '1' && isEmpty(p.taxZone));
+
     // Onglet 7 — lots virtuels inclus, Avant-première incluse (défauts de l'onglet).
     const sansPlan = lots.filter(lot => {
         if (!isEmpty(lot.floorPlan) || lot.isUnitPublishedB2C !== '1') return false;
@@ -163,6 +167,11 @@ export function computeIndicateurs({ programs, lots }) {
             cle: 'sansHonoraires', libelle: 'Programmes sans honoraires prescripteurs', unite: 'programme', slug: 'honoraires',
             perimetre: 'Programmes diffusés B2C et B2B ayant des lots B2B, hors Avant-première',
             parRegroupement: countBy(sansHonoraires, p => p.agencyRegions)
+        },
+        {
+            cle: 'sansZoneFiscale', libelle: 'Programmes sans zone fiscale', unite: 'programme', slug: 'zone-fiscale',
+            perimetre: 'Programmes diffusés B2C sans zone fiscale (A, Abis, B1, B2, C), Avant-première incluse',
+            parRegroupement: countBy(sansZoneFiscale, p => p.agencyRegions)
         }
     ];
     for (const ind of indicateurs) {

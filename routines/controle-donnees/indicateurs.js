@@ -27,6 +27,17 @@ const isLmnpGere = prog => taxCodes(prog).has('lmnpgere');
 const needsLmnpRent = prog => taxCodes(prog).has('lmnp');
 const hasInvestmentScheme = prog => { const c = taxCodes(prog); return c.has('patrimonial') || c.has('lmnp'); };
 
+// Famille commerciale (familyOf de l'app) et disponibilité (Libre, Option ou vide).
+function familyOf(lot) {
+    const t = (lot.typologie || '').trim();
+    if (!t) return 'Sans typologie';
+    if (/^(Studio|Appartement)/i.test(t)) return 'Appartement';
+    if (/^Maison/i.test(t)) return 'Maison';
+    return t;
+}
+const AVAILABLE_STATES = new Set(['libre', 'option', '']);
+const isLotAvailable = lot => AVAILABLE_STATES.has(norm(lot.unitStatePPM));
+
 function parseFeesByTypology(raw) {
     if (!raw) return [];
     try { return JSON.parse(raw); } catch {}
@@ -73,7 +84,7 @@ function countBy(items, keyFn) {
     return out;
 }
 
-export function computeIndicateurs({ programs, lots }) {
+export function computeIndicateurs({ programs, lots, otherUnits = [] }) {
     const programsMap = {};
     programs.forEach(p => { programsMap[p.idProgram] = p; });
 
@@ -86,6 +97,13 @@ export function computeIndicateurs({ programs, lots }) {
         if (lot.isUnitPublishedB2C === '1') c.b2c++;
         if (lot.isUnitPublishedB2B === '1') c.b2b++;
     });
+
+    // Onglets 1 et 2 — filtre « Types de lots disponibles », défaut Appartement + Maison : un
+    // programme sans appartement ni maison disponible (lots.csv et otherUnits.csv) est écarté.
+    const LOT_TYPE_DEFAULT = new Set(['Appartement', 'Maison']);
+    const progsLogementDispo = new Set([...lots, ...otherUnits]
+        .filter(l => l.operationCode && isLotAvailable(l) && LOT_TYPE_DEFAULT.has(familyOf(l)))
+        .map(l => l.operationCode));
 
     // Statut programme par défaut (onglets 1 à 4) : tout sauf Avant-première, « sans
     // statut » compris s'il existe dans les données.
@@ -100,6 +118,7 @@ export function computeIndicateurs({ programs, lots }) {
         if (!statusOk(prog)) return false;
         if (prog && prog.isProgramPublishedB2C !== '1') return false;
         if (lot.isUnitPublishedB2C !== '1') return false;
+        if (!progsLogementDispo.has(lot.operationCode)) return false;
         if (isLmnpGere(prog || {})) return false;
         return isRentMissing(lot.marketMonthlyRent) || (needsLmnpRent(prog) && isRentMissing(lot.lmnpMonthlyRent));
     });
@@ -108,6 +127,7 @@ export function computeIndicateurs({ programs, lots }) {
     const progsFiltres = programs.filter(p => !isArchived(p) && p.isProgramPublishedB2C === '1' && statusOk(p));
 
     const sansCharges = progsFiltres.filter(p => {
+        if (!progsLogementDispo.has(p.idProgram)) return false;
         if (isLmnpGere(p) || !isEmpty(p.estimatedMonthlyChargesPerSqM)) return false;
         if (!hasInvestmentScheme(p)) return false;
         const c = lotCountsByProg[p.idProgram] || { b2c: 0, b2b: 0 };
@@ -150,7 +170,7 @@ export function computeIndicateurs({ programs, lots }) {
         },
         {
             cle: 'sansLoyer', libelle: 'Lots sans loyer', unite: 'lot', slug: 'loyers',
-            perimetre: 'Loyer patrimonial manquant, ou loyer LMNP sur un programme en LMNP, lots diffusés B2C, hors LMNP géré et Avant-première',
+            perimetre: 'Loyer patrimonial manquant, ou loyer LMNP sur un programme en LMNP, lots diffusés B2C, hors LMNP géré et Avant-première, programmes ayant encore un appartement ou une maison disponible',
             parRegroupement: countBy(sansLoyer, l => l.agencyRegions)
         },
         {
@@ -160,7 +180,7 @@ export function computeIndicateurs({ programs, lots }) {
         },
         {
             cle: 'sansCharges', libelle: 'Programmes sans charges estimées', unite: 'programme', slug: 'charges',
-            perimetre: 'Programmes diffusés B2C en investissement locatif (patrimonial ou LMNP), hors LMNP géré et Avant-première',
+            perimetre: 'Programmes diffusés B2C en investissement locatif (patrimonial ou LMNP), hors LMNP géré et Avant-première, programmes ayant encore un appartement ou une maison disponible',
             parRegroupement: countBy(sansCharges, p => p.agencyRegions)
         },
         {

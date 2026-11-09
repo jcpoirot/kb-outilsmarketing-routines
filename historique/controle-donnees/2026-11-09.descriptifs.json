@@ -1,0 +1,1605 @@
+{
+  "date": "2026-11-09",
+  "programmes": [
+    {
+      "idProgram": "11051",
+      "hash": "42e58de68e1866d0",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "18531",
+      "hash": "1ce2128c52a5f87d",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "19501",
+      "hash": "365b3e424dbe83af",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "21071",
+      "hash": "085858aed8f6d535",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "21561",
+      "hash": "fae3086885a75d42",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "21571",
+      "hash": "ee89f9ef94cd489d",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22181",
+      "hash": "e222d2e411e3c174",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22781",
+      "hash": "a6c812d2ab748ef5",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22791",
+      "hash": "d36a47d59431e372",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22901",
+      "hash": "51a92c42398dd4a8",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22931",
+      "hash": "f6d9f121f1072084",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "22961",
+      "hash": "151b11be543dcfb2",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "moyenne",
+          "extrait": "un bel appartement de 5 pièces de de 107 m² seul sur son palier",
+          "constat": "Aucun T5 dans le stock diffusé (Studio ×1, T2 ×5, T3 ×8, T4 ×1 ; 29,46–80,47 m²) ; les détails annoncent aussi « du studio au 5 pièces ».",
+          "commentaire": "Retirer le 5 pièces de 107 m² et ramener la gamme au 4 pièces dans les détails programme."
+        }
+      ]
+    },
+    {
+      "idProgram": "23001",
+      "hash": "1de039a3fa15a49a",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "27161",
+      "hash": "a4b86e43e23569b3",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "une dernière place de parking sécurisée en sous-sol est encore disponible",
+          "constat": "Aucun lot diffusé disponible dans la famille, parking compris.",
+          "commentaire": "Retirer la mention de disponibilité du parking (aussi dans le texte annonces)."
+        }
+      ]
+    },
+    {
+      "idProgram": "27191",
+      "hash": "b88f2bf3eba5ad65",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "Kaufman & Broad vous propose son dernier parking.",
+          "constat": "Aucun lot diffusé disponible dans la famille ; les détails programme annoncent aussi « nos derniers appartements neufs, du 3 au 5 pièces duplex ».",
+          "commentaire": "Retirer les mentions de derniers lots (descriptif, texte annonces, détails programme)."
+        }
+      ]
+    },
+    {
+      "idProgram": "28001",
+      "hash": "2d9b005c2b92d844",
+      "verdictDu": "2026-11-05",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28011",
+      "hash": "d63269e8beb8bf21",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28071",
+      "hash": "846b1a931d8a8163",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28511",
+      "hash": "3df6618b4b4d8ab5",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "sa dernière opportunité : un 3 pièces",
+          "constat": "Aucun lot diffusé disponible dans la famille (110 livrés, 1 réservé).",
+          "commentaire": "Retirer l'annonce du dernier 3 pièces."
+        }
+      ]
+    },
+    {
+      "idProgram": "28621",
+      "hash": "b8e7e176b7bdbc8c",
+      "verdictDu": "2026-11-05",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28781",
+      "hash": "12f4675aca9ad907",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "28911",
+      "hash": "b920d654fec95a77",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29001",
+      "hash": "e396d1c5472c506d",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29002",
+      "hash": "1f40f1e820e7bccc",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29031",
+      "hash": "14f40c75a23e7df7",
+      "verdictDu": "2026-11-05",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29061",
+      "hash": "6787738ddd2f0518",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29171",
+      "hash": "dbcd476b35224232",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29251",
+      "hash": "1535a9d02e19a759",
+      "verdictDu": "2026-10-29",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29271",
+      "hash": "41da015a1d302a02",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29311",
+      "hash": "17218560d654ae6b",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29381",
+      "hash": "3f5af2ff3911f9e5",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29382",
+      "hash": "e0a5a9ec85c41cc1",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29431",
+      "hash": "85d414e39c4c083c",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29451",
+      "hash": "8f2fbef9289a50dd",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "forces de programme",
+          "type": "force_programme",
+          "severite": "faible",
+          "extrait": "Architecture traditionnelle",
+          "constat": "Les textes décrivent une architecture « contemporaine » (« style contemporain », « Architecture contemporaine »).",
+          "commentaire": "Remplacer la force par une étiquette cohérente avec l'architecture contemporaine décrite."
+        }
+      ]
+    },
+    {
+      "idProgram": "29551",
+      "hash": "70ab921a089e3588",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29571",
+      "hash": "a35ee1b3b76d1fd6",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29681",
+      "hash": "534663a4d35db5f5",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29691",
+      "hash": "668645e39feacaac",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29721",
+      "hash": "cfd5e33c651c44dc",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29731",
+      "hash": "cf1a4ca054b40d89",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29751",
+      "hash": "f58242e79cefbce4",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29781",
+      "hash": "3e69bd6596d6cc49",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29831",
+      "hash": "eaecb41eed1b4814",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Du studio au 4 pièces, des lieux de vie à votre image",
+          "constat": "Pas de studio dans le stock diffusé (T2 ×2, T3 ×8, T4 ×3) ; le descriptif annonce « du 2 au 4 pièces ».",
+          "commentaire": "Aligner la gamme des détails programme sur le descriptif (du 2 au 4 pièces)."
+        }
+      ]
+    },
+    {
+      "idProgram": "29871",
+      "hash": "c8c190c7866ada2f",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29881",
+      "hash": "016666da08415a54",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Les appartements, du 2 au 4 pièces, profitent d'un chauffage collectif hybride",
+          "constat": "Pas de T2 dans le stock de la famille (T3 ×6, T4 ×1, maisons) ; le descriptif annonce des appartements de 3 pièces.",
+          "commentaire": "Aligner la gamme des détails programme sur le stock (3 et 4 pièces)."
+        }
+      ]
+    },
+    {
+      "idProgram": "29891",
+      "hash": "9819700e326dbde0",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "deux bâtiments proposant des appartements, du 2 au 4 pièces",
+          "constat": "Pas de T2 dans le stock de la famille (T3 ×6, T4 ×1 en appartements).",
+          "commentaire": "Ramener la gamme d'appartements à 3 et 4 pièces."
+        },
+        {
+          "champ": "descriptif",
+          "type": "surface",
+          "severite": "moyenne",
+          "extrait": "maisons, de 80 à 102 m² habitables",
+          "constat": "Les maisons en stock font 89,71–101,7 m² : aucune à 80 m².",
+          "commentaire": "Corriger la plage de surfaces des maisons (de 90 à 102 m²)."
+        }
+      ]
+    },
+    {
+      "idProgram": "29941",
+      "hash": "f7834cc100d4b0c8",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "moyenne",
+          "extrait": "Les trois maisons affirment leur caractère avec des façades en pierre de grande qualité.",
+          "constat": "Aucune maison dans le stock diffusé (T3 ×8 uniquement).",
+          "commentaire": "Retirer la mention des maisons des détails programme."
+        }
+      ]
+    },
+    {
+      "idProgram": "29951",
+      "hash": "0be99f9ddb05369d",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29953",
+      "hash": "4b393f0240da9e6d",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29961",
+      "hash": "6e69715375992370",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "29981",
+      "hash": "4ebde5d72f33f5f7",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30021",
+      "hash": "2c589a1f426daf70",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30031",
+      "hash": "a0775be4581adb6b",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "30051",
+      "hash": "44c1951a18b1cb53",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "33121",
+      "hash": "a8c144b5fdf516a5",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "35301",
+      "hash": "6388ce20943d16f2",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "35371",
+      "hash": "ae7fc6ab2c4cc654",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "35511",
+      "hash": "a5a65ffa6fd4db9e",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38391",
+      "hash": "b7d2374e45c3336a",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38441",
+      "hash": "8cfbbd9b453da013",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Les maisons 2 à 4 chambres, de 86 m² à 121 m² habitables",
+          "constat": "Pas de maison 2 chambres dans le stock (Maison 3 ch. ×2, Maison 4 ch. ×1) ; le descriptif dit « 3 à 4 chambres ».",
+          "commentaire": "Corriger le texte annonces en « 3 à 4 chambres »."
+        }
+      ]
+    },
+    {
+      "idProgram": "38461",
+      "hash": "5edcfc85d6e4b8b2",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "38491",
+      "hash": "a409ff9428b8b47d",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42301",
+      "hash": "86a3a84c9285d5e6",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42401",
+      "hash": "3e0bd37a2a05ddf4",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42411",
+      "hash": "3740c83d81b756dc",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Du studio au 5 pièces, chaque appartement bénéficie d’un bel espace extérieur",
+          "constat": "Stock : T2 ×5, T3 ×6, T4 ×3 ; ni studio ni T5 ; le descriptif annonce du 2 au 4 pièces.",
+          "commentaire": "Aligner le texte annonces sur le descriptif (du 2 au 4 pièces)."
+        }
+      ]
+    },
+    {
+      "idProgram": "42461",
+      "hash": "08e56632f3638223",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42471",
+      "hash": "cbf484d927f75c57",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42481",
+      "hash": "8de7f6c051ce46a3",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42491",
+      "hash": "d0f819d616960e5c",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42511",
+      "hash": "f4f69c1a2808634e",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Les appartements, du studio au 4 pièces duplex",
+          "constat": "Les seuls lots diffusés (virtuels) sont un T2, un T3 et un T4 : aucun studio ; la même gamme figure dans le texte annonces et les détails programme.",
+          "commentaire": "Aligner la gamme sur « du 2 au 4 pièces » dans les trois champs."
+        }
+      ]
+    },
+    {
+      "idProgram": "42521",
+      "hash": "dd01e40cb74521b9",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "42541",
+      "hash": "8379b0a1b97faae5",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "49651",
+      "hash": "b339b7bf219d5240",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "moyenne",
+          "extrait": "Le programme propose également une maison 4 pièces",
+          "constat": "Aucune maison dans le stock de la famille (T3 ×10, T4 ×3) ; la maison est aussi citée dans le texte annonces et les détails programme.",
+          "commentaire": "Retirer la maison 4 pièces des textes tant qu'elle n'est plus en stock."
+        }
+      ]
+    },
+    {
+      "idProgram": "49701",
+      "hash": "9884309cf46c933a",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "moyenne",
+          "extrait": "Le programme propose également une maison 4 pièces",
+          "constat": "Aucune maison dans le stock de la famille (T3 ×10, T4 ×3) ; mention reprise dans le texte annonces.",
+          "commentaire": "Retirer la maison 4 pièces des textes."
+        },
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "du 2 au 4 pièces, dont des duplex et une maison 4 pièces",
+          "constat": "Pas de T2 dans le stock de la famille (T3 et T4), le descriptif dit « du 3 au 4 pièces ».",
+          "commentaire": "Corriger la gamme en « du 3 au 4 pièces »."
+        }
+      ]
+    },
+    {
+      "idProgram": "49771",
+      "hash": "5ce777114e0a56de",
+      "verdictDu": "2026-11-02",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51491",
+      "hash": "7bdc0c1e3b6eebca",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51501",
+      "hash": "ec7210d47a460aa6",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51541",
+      "hash": "7e9d2735c468fb31",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51551",
+      "hash": "027b0162778b2f8c",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "51561",
+      "hash": "4d0a8ce15774b367",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "52631",
+      "hash": "1a6afd40c276626e",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "52661",
+      "hash": "cfa074e173338130",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "54901",
+      "hash": "5c2738989c005ecd",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "54911",
+      "hash": "14af42c1103a6fe3",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "55051",
+      "hash": "663859742977d8b7",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56141",
+      "hash": "3c38253a86312118",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56261",
+      "hash": "0a51962fdb7e59e9",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "56301",
+      "hash": "f9bfc7172c083ada",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "57001",
+      "hash": "e5fd00780fe4e438",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "57031",
+      "hash": "03701597c9504ca7",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59361",
+      "hash": "5aa5026cb1079ba7",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59481",
+      "hash": "cef95009d154c5a1",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "forte",
+          "extrait": "Dernières opportunités pour devenir propriétaire d'un 2 ou 3 pièces neuf face au canal",
+          "constat": "Aucun logement diffusé disponible : les 19 logements de la résidence sont vendus ; seul un local commercial est diffusé (« Succès commercial » et « Dernières opportunités » aussi dans le statut).",
+          "commentaire": "Retirer l'annonce de 2 ou 3 pièces disponibles, ou diffuser les lots s'il en reste."
+        }
+      ]
+    },
+    {
+      "idProgram": "59491",
+      "hash": "28a5cab9cda41da2",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59511",
+      "hash": "d13c6fc60eae2064",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "quantite",
+          "severite": "moyenne",
+          "extrait": "Cette nouvelle réalisation accueillera 127 appartements étudiants",
+          "constat": "La résidence compte 10 logements au total dans les lots (10 libres), pas 127.",
+          "commentaire": "Vérifier le nombre de logements saisis ou corriger le texte."
+        }
+      ]
+    },
+    {
+      "idProgram": "59531",
+      "hash": "50154788553b6fc7",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "59561",
+      "hash": "1a8d24b869024571",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "description événement",
+          "type": "statut",
+          "severite": "faible",
+          "extrait": "Les 6 et 7 novembre, venez réserver votre appartement.",
+          "constat": "Événement daté des 6 et 7 novembre 2026, passé au jour du rapport (09/11/2026) ; l'« offre de lancement réservée aux 5 premiers réservataires » y est liée.",
+          "commentaire": "Retirer ou remplacer l'événement et la mention de l'offre de lancement."
+        }
+      ]
+    },
+    {
+      "idProgram": "65151",
+      "hash": "7b31ef7c3cfb83a5",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "du studio au 4 pièces",
+          "constat": "Il ne reste qu'un T4 (81,27 m²) dans la famille ; gamme d'origine d'une résidence presque vendue.",
+          "commentaire": "Remplacer la gamme d'origine par le seul 4 pièces disponible."
+        }
+      ]
+    },
+    {
+      "idProgram": "65161",
+      "hash": "b2f83c15debb1187",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "statut",
+          "severite": "moyenne",
+          "extrait": "Travaux en cours !",
+          "constat": "La résidence est livrée : 58 logements Livrés sur 78 (statut livraison rapide sur le programme parent).",
+          "commentaire": "Retirer la mention de travaux en cours."
+        },
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "du studio au 4 pièces",
+          "constat": "Il ne reste qu'un T4 (81,27 m²) dans la famille ; gamme d'origine d'une résidence presque vendue.",
+          "commentaire": "Remplacer la gamme d'origine par le seul 4 pièces disponible."
+        }
+      ]
+    },
+    {
+      "idProgram": "65171",
+      "hash": "45c9a6385a210f49",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Du studio au 5 pièces, avec loggias ou terrasses, les appartements répondront à tous vos objectifs",
+          "constat": "Le stock diffusé ne compte que des studios (×5), des T4 (×7) et un T5 : ni T2 ni T3 ; la gamme est reprise dans les détails programme (« du studio au 5 pièces »).",
+          "commentaire": "Présenter les derniers studios, 4 et 5 pièces plutôt que la gamme complète."
+        }
+      ]
+    },
+    {
+      "idProgram": "65231",
+      "hash": "d79c2a9e05e43e99",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "studios mais aussi 3 et 4 pièces en colocation",
+          "constat": "Stock : T3 ×3 seulement ; les détails programme annoncent aussi « une gamme très complète d'appartements du studio au 5 pièces » alors que le descriptif ne parle que des derniers 3 pièces.",
+          "commentaire": "Retirer la gamme d'origine (studio au 5 pièces) des textes annonces et détails programme."
+        }
+      ]
+    },
+    {
+      "idProgram": "65271",
+      "hash": "90f4f6e0d807e1eb",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "description événement",
+          "type": "statut",
+          "severite": "faible",
+          "extrait": "Rendez-vous les 6 et 7 novembre au bureau de vente d’Huningue",
+          "constat": "Événement daté des 6 et 7 novembre 2026, passé au jour du rapport (09/11/2026).",
+          "commentaire": "Retirer ou remplacer l'événement passé."
+        }
+      ]
+    },
+    {
+      "idProgram": "70061",
+      "hash": "9dfc435b6c1244ed",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71121",
+      "hash": "8018ff32c2b81a7a",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71501",
+      "hash": "295af50ee799eb40",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Du studio au 5 pièces, espace et verdure au rendez-vous",
+          "constat": "Le stock diffusé ne compte que 2 T4 (83,44–86,54 m²) : ni studio, ni T2, T3 ou T5 disponibles ; les 118 m² cités dépassent aussi la plage du stock.",
+          "commentaire": "Remplacer la gamme d'origine par les derniers T4 disponibles."
+        }
+      ]
+    },
+    {
+      "idProgram": "71521",
+      "hash": "f665a42f1b55db60",
+      "verdictDu": "2026-10-26",
+      "sansStock": true,
+      "parleDuStock": true,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "stock",
+          "severite": "faible",
+          "extrait": "Dernière opportunité ! … cet appartement de 3 pièces lumineux et fonctionnel avec loggia",
+          "constat": "Aucun lot diffusé disponible (47 logements livrés).",
+          "commentaire": "Retirer l'annonce du dernier 3 pièces."
+        }
+      ]
+    },
+    {
+      "idProgram": "71531",
+      "hash": "62c59658ea277197",
+      "verdictDu": "2026-11-09",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71541",
+      "hash": "4b4ad4522386a6a2",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "surface",
+          "severite": "moyenne",
+          "extrait": "Du studio au 5 pièces, de 31 à 121 m² habitables",
+          "constat": "Le stock diffusé va de 27,79 à 107,54 m² ; aucun lot de 121 m².",
+          "commentaire": "Corriger la surface maximale annoncée."
+        }
+      ]
+    },
+    {
+      "idProgram": "71611",
+      "hash": "292035c249f7f731",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "quantite",
+          "severite": "moyenne",
+          "extrait": "Notre sélection exclusive comprend seulement 19 appartements",
+          "constat": "La résidence compte 18 logements au total, tous états confondus (Vendu 9, Libre 7, Réservé 2).",
+          "commentaire": "Corriger le nombre d'appartements (18)."
+        }
+      ]
+    },
+    {
+      "idProgram": "71691",
+      "hash": "218003c6ed8f9904",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71901",
+      "hash": "22349a7d6b32b023",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71931",
+      "hash": "d040d07e9893a872",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "71971",
+      "hash": "ae7c9be698ef6f93",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72011",
+      "hash": "6d1df68156970bea",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72101",
+      "hash": "532efb0d320d0432",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Déclinés du studio au 4 pièces, les appartements",
+          "constat": "Stock de la famille : T3 ×4 seulement ; le descriptif ne parle que des dernières opportunités en 3 pièces.",
+          "commentaire": "Retirer la gamme d'origine (studio au 4 pièces) du texte annonces."
+        }
+      ]
+    },
+    {
+      "idProgram": "72151",
+      "hash": "299c814c10e4936b",
+      "verdictDu": "2026-11-09",
+      "sansStock": true,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72171",
+      "hash": "05a89310c5d40545",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72181",
+      "hash": "5511b0832fdaf349",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72291",
+      "hash": "9f7de86ab8baab8c",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72371",
+      "hash": "aade83784878ad6f",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72391",
+      "hash": "2ae88ebc7f707cdb",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72401",
+      "hash": "346e435fe931292d",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72411",
+      "hash": "92e79b4807a5196c",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72421",
+      "hash": "e48bd6d2c1f19799",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72431",
+      "hash": "a37d7d0e5001e91c",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72451",
+      "hash": "f6f2313d1c5ebe4a",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72461",
+      "hash": "43819a8ae5c90b40",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72491",
+      "hash": "4800eabd0e326768",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72521",
+      "hash": "3c3f0dde158114bc",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72541",
+      "hash": "7705e5bb7435136c",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72571",
+      "hash": "c31209a3d8bb6ad7",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72581",
+      "hash": "d39fadde6fdc6905",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72601",
+      "hash": "257a77491df10149",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72651",
+      "hash": "323500cece50c75d",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72671",
+      "hash": "4929a631acc6bb69",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "quantite",
+          "severite": "moyenne",
+          "extrait": "cette résidence intimiste dévoile seulement 20 appartements",
+          "constat": "La résidence compte 14 logements au total, tous états (Réservé 5, Libre 8, Option 1) ; le descriptif annonce bien 14 appartements.",
+          "commentaire": "Corriger le nombre de logements en 14."
+        },
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "Du studio au 4 pièces, les intérieurs conjuguent beaux volumes",
+          "constat": "Le stock diffusé ne compte que T2 (×1), T3 (×4) et T4 (×3) : aucun studio ; le descriptif annonce « du 2 au 4 pièces ».",
+          "commentaire": "Aligner sur « du 2 au 4 pièces »."
+        }
+      ]
+    },
+    {
+      "idProgram": "72681",
+      "hash": "b25aab8839afd140",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72691",
+      "hash": "a8c1f55054308660",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72721",
+      "hash": "8abb85c04c1aa16d",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72731",
+      "hash": "1b6f995c30f8e7ea",
+      "verdictDu": "2026-10-29",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72741",
+      "hash": "ac66034fe04348f2",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72781",
+      "hash": "320d8787789bb902",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72791",
+      "hash": "41bf96f4a05db209",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72811",
+      "hash": "46ce9160c81790df",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "descriptif",
+          "type": "typologie",
+          "severite": "moyenne",
+          "extrait": "Elle accueille également deux maisons de 2 chambres, chacune bénéficiant de son jardin privatif",
+          "constat": "Les lots virtuels diffusés se limitent à un studio, un T2, un T3 et un T4 ; aucune maison (aussi dans le texte annonces et les détails programme).",
+          "commentaire": "Retirer les maisons des textes ou saisir les lots correspondants."
+        }
+      ]
+    },
+    {
+      "idProgram": "72821",
+      "hash": "127d2d7046ad0fad",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72831",
+      "hash": "c86781ecf2ea59b5",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72851",
+      "hash": "7c1b345ed02a4257",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72881",
+      "hash": "aca5050125aa77bc",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72901",
+      "hash": "db3abefca8c0e3af",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72921",
+      "hash": "9a08dc4106a31769",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "72931",
+      "hash": "55eee943c59b8399",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73101",
+      "hash": "10903796b4034c1e",
+      "verdictDu": "2026-11-02",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73111",
+      "hash": "41f6da37750a493e",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73121",
+      "hash": "fd888a89c90ca124",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73141",
+      "hash": "23bd185a37228873",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73161",
+      "hash": "64930ea18203d732",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "73171",
+      "hash": "71c36ae820e54b8b",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "75071",
+      "hash": "ae90f83cd87f5184",
+      "verdictDu": "2026-10-26",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "texte annonces",
+          "type": "typologie",
+          "severite": "forte",
+          "extrait": "Du studio au 4 pièces, découvrez de nouveaux appartements neufs tout confort",
+          "constat": "Aucun logement diffusé disponible : les 22 logements de la résidence sont livrés ; seuls 2 parkings sont diffusés (le descriptif ne parle que de parkings).",
+          "commentaire": "Remplacer le texte annonces par une présentation des parkings, ou le retirer."
+        }
+      ]
+    },
+    {
+      "idProgram": "75091",
+      "hash": "c726a78efee7352d",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "faible",
+          "extrait": "appartements contemporains déclinés du studio au 4 pièces duplex, ainsi que 4 maisons de 3 chambres",
+          "constat": "Le stock diffusé compte 1 studio et 2 T3 : ni T2, ni T4, ni maison (résidence vendue à 31 lots sur 39).",
+          "commentaire": "Réécrire la gamme sur les lots restants ou la mettre au passé."
+        }
+      ]
+    },
+    {
+      "idProgram": "75151",
+      "hash": "e24d11fae5cc1f86",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    },
+    {
+      "idProgram": "81291",
+      "hash": "b212eb41d0e5ec10",
+      "verdictDu": "2026-11-09",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": [
+        {
+          "champ": "détails programme",
+          "type": "typologie",
+          "severite": "forte",
+          "extrait": "les appartements disponibles du studio au 4 pièces",
+          "constat": "Stock : Studio ×1, T2 ×1, T3 ×2 ; aucun T4 disponible. Même gamme « du studio au 4 pièces » dans le descriptif et le texte annonces.",
+          "commentaire": "Ramener la gamme au studio–3 pièces dans les détails programme, le descriptif et le texte annonces."
+        }
+      ]
+    },
+    {
+      "idProgram": "98111",
+      "hash": "5304d4583763c0b0",
+      "verdictDu": "2026-11-05",
+      "sansStock": false,
+      "parleDuStock": false,
+      "anomalies": []
+    }
+  ]
+}

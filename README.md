@@ -22,7 +22,7 @@ En plus du mail général, chaque regroupement d'agences reçoit un mail limité
 (offre diffusée, problèmes de données avec liens filtrés sur le regroupement, descriptifs et
 Excel de ses seuls programmes) et à sa synthèse, rédigée par Claude. Sous le tableau des
 descriptifs, le mail régional (pas le général) liste les programmes en écart : liens Web et PIM
-(`uuid` du programme), extrait en cause et constat, abrégés. Destinataires dans
+(`uuid` du programme), attribut du PIM en cause (Description principale, Description lignages… : table `ATTRIBUTS_PIM` de `descriptifs.js`, reprise dans l'Excel), extrait et constat, abrégés. Destinataires dans
 `routines/controle-donnees/config.json`, clé = nom du regroupement avant le « | » (accents et
 casse indifférents, le responsable peut changer sans toucher la config) :
 

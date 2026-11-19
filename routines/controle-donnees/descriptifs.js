@@ -208,6 +208,18 @@ export const TEXTES_COMPLEMENTAIRES = [
 ];
 // Champs signalés quand ils sont vides (texte sans HTML vide), sur chaque programme, enfant compris.
 export const CHAMPS_VIDES = ['descriptif', ...TEXTES_COMPLEMENTAIRES.filter(t => t.videSignale).map(t => t.champ)];
+// Attribut du PIM d'où vient un écart, tel que le voient les RMO (mails régionaux, Excel) :
+// `champ` des verdicts → libellé. Les clés restent celles de l'historique (variations).
+export const ATTRIBUTS_PIM = {
+    'descriptif': 'Description principale',
+    'titre événement': "Titre de l'événement",
+    'description événement': "Description de l'événement",
+    'texte annonces': 'Description lignages',
+    'détails programme': 'Détails du programme',
+    'forces de programme': 'Forces du programme',
+    'stock': 'Grille de prix'
+};
+export const attributPim = champ => ATTRIBUTS_PIM[champ || 'descriptif'] || champ;
 // Textes longs : repris d'un programme de la famille, ils ne sont jugés que sur lui (comme le descriptif).
 const TEXTES_LONGS = ['annonces', 'details'];
 

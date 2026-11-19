@@ -21,7 +21,7 @@ import { SITE_LIENS as SITE } from '../../lib/donnees.js';
 import { COLORS, esc, fmt, variation, markdownToHtml, section, th, td, table, link, page } from '../../lib/email.js';
 import { lienApp1, lienApp5, SANS_REGROUPEMENT } from './indicateurs.js';
 import { regroupementsAEnvoyer } from './regroupements.js';
-import { CHAMPS_VIDES } from './descriptifs.js';
+import { CHAMPS_VIDES, attributPim } from './descriptifs.js';
 
 const ROUTINE = 'controle-donnees';
 
@@ -282,12 +282,12 @@ function videsRg(a, rg) {
         + `programme${(r.total || 0) > 1 ? 's ont' : ' a'} au moins un champ vide dans le PIM`
         + `${variation(rv.total ?? null, 'bad') ? ` (${variation(rv.total, 'bad')})` : ''}.</p>`;
     if (!r.total) return VIDES_TITRE + intro;
-    const decompte = table(CHAMPS_VIDES.map(c => th(esc(majuscule(c)), 'center')).join(''),
+    const decompte = table(CHAMPS_VIDES.map(c => th(esc(attributPim(c)), 'center')).join(''),
         [`<tr>${CHAMPS_VIDES.map(c => td(nbVar(r[c] || 0, rv[c] ?? null), 'center')).join('')}</tr>`]);
     const liste = detailDescriptifs ? Object.values(detailDescriptifs.dossierById)
         .filter(p => p.agencyRegions === rg && p.champsVides?.length)
         .sort((x, y) => String(x.idProgram).localeCompare(String(y.idProgram), 'fr', { numeric: true }))
-        .map(p => `<tr>${td(celluleProgramme(p), 'left', 'width:34%')}${td(esc(p.champsVides.map(majuscule).join(', ')))}</tr>`) : [];
+        .map(p => `<tr>${td(celluleProgramme(p), 'left', 'width:34%')}${td(esc(p.champsVides.map(attributPim).join(', ')))}</tr>`) : [];
     return VIDES_TITRE + intro + `<div style="overflow-x:auto">${decompte}</div>`
         + (liste.length ? `<div style="margin-top:8px">${table(th('Programme') + th('Champs vides'), liste)}</div>` : '');
 }
@@ -307,9 +307,8 @@ function programmesRg(rg) {
             .sort((a, b) => SEVS.findIndex(([k]) => k === a.severite) - SEVS.findIndex(([k]) => k === b.severite))
             .map(a => `<div style="margin:0 0 6px">`
                 + `<span style="font-size:11px;font-weight:600;color:${e.sansStock ? COLORS.muted : SEV_COULEUR[a.severite]}">`
-                + `${esc(e.sansStock ? 'Sans stock' : majuscule(a.severite))} · ${esc(a.type)}`
-                + `${a.champ && !['descriptif', 'stock'].includes(a.champ) ? ` · ${esc(a.champ)}` : ''}</span><br>`
-                + `<span style="font-style:italic">« ${esc(abrege(a.extrait, 110))} »</span>`
+                + `${esc(e.sansStock ? 'Sans stock' : majuscule(a.severite))} · ${esc(a.type)}</span><br>`
+                + `<strong>${esc(attributPim(a.champ))}</strong> : <span style="font-style:italic">« ${esc(abrege(a.extrait, 110))} »</span>`
                 + (a.constat ? `<br><span style="font-size:12px;color:${COLORS.muted}">${esc(abrege(a.constat, 150))}</span>` : '')
                 + '</div>').join('');
         return `<tr>${td(prog, 'left', 'width:34%')}${td(anomalies)}</tr>`;

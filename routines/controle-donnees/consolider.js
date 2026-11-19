@@ -17,7 +17,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { routineContext, readJson, previousFile, previousReport } from '../../lib/routine.js';
 import { writeXlsx } from '../../lib/xlsx.js';
-import { stockText, CHAMPS_VIDES } from './descriptifs.js';
+import { stockText, CHAMPS_VIDES, attributPim } from './descriptifs.js';
 import { SANS_REGROUPEMENT } from './indicateurs.js';
 import { slugRegroupement } from './regroupements.js';
 
@@ -171,8 +171,8 @@ const rows = lignes.map(({ e, a, p }) => [
     asNumber(p.parent),
     p.statutProgramme,
     a.type,
-    // L'extrait est précédé de son texte d'origine quand il ne vient pas du descriptif.
-    ['descriptif', 'stock'].includes(a.champ || 'descriptif') ? a.extrait : `${a.champ[0].toUpperCase()}${a.champ.slice(1)} : ${a.extrait}`,
+    // L'extrait est précédé de l'attribut du PIM d'où il vient.
+    `${attributPim(a.champ)} : ${a.extrait}`,
     (p.famille.length ? 'Famille : ' : '') + stockText(p.stockFamille),
     a.constat,
     a.commentaire
@@ -182,7 +182,7 @@ rows.push(...dossier.programmes.filter(p => p.champsVides?.length)
     .sort((x, y) => (x.agencyRegions || '').localeCompare(y.agencyRegions || '', 'fr')
         || String(x.idProgram).localeCompare(String(y.idProgram), 'fr', { numeric: true }))
     .map(p => ['Champs vides', p.agencyRegions || SANS_REGROUPEMENT, asNumber(p.idProgram), p.nom, lien(p), p.ville,
-        asNumber(p.parent), p.statutProgramme, 'vide', `Vides : ${p.champsVides.join(', ')}`,
+        asNumber(p.parent), p.statutProgramme, 'vide', `Vides : ${p.champsVides.map(attributPim).join(', ')}`,
         (p.famille.length ? 'Famille : ' : '') + stockText(p.stockFamille), '', 'Renseigner ces champs dans le PIM.']));
 await writeFile(ctx.file('descriptifs.xlsx'),
     writeXlsx({ sheetName: 'Descriptifs et stock', tableName: 'DescriptifsStock', columns: COLUMNS, rows }));

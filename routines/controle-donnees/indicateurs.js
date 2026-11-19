@@ -144,6 +144,11 @@ export function computeIndicateurs({ programs, lots, otherUnits = [] }) {
     // sans taxZone, Avant-première incluse (défaut de l'onglet).
     const sansZoneFiscale = programs.filter(p => !isArchived(p) && p.isProgramPublishedB2C === '1' && isEmpty(p.taxZone));
 
+    // Onglet 9 — getFilteredPrograms(9) + getErrorProgsEarlyTypos : programmes diffusés B2C,
+    // hors Avant-première (en dur), qui portent encore une typo d'Avant-première (earlyAccessTypos).
+    const typoAvantPremiere = programs.filter(p => !isArchived(p) && p.isProgramPublishedB2C === '1'
+        && statusOk(p) && !isEmpty(p.earlyAccessTypos));
+
     // Onglet 7 — lots virtuels inclus, Avant-première incluse (défauts de l'onglet).
     const sansPlan = lots.filter(lot => {
         if (!isEmpty(lot.floorPlan) || lot.isUnitPublishedB2C !== '1') return false;
@@ -192,6 +197,17 @@ export function computeIndicateurs({ programs, lots, otherUnits = [] }) {
             cle: 'sansZoneFiscale', libelle: 'Programmes sans zone fiscale', unite: 'programme', slug: 'zone-fiscale',
             perimetre: 'Programmes diffusés B2C sans zone fiscale (A, Abis, B1, B2, C), Avant-première incluse',
             parRegroupement: countBy(sansZoneFiscale, p => p.agencyRegions)
+        },
+        {
+            cle: 'typoAvantPremiere', libelle: 'Programmes avec une typo en Avant-première à supprimer', unite: 'programme', slug: 'typo-avant-premiere',
+            perimetre: 'Programmes diffusés B2C hors Avant-première dont la typo en Avant-première (futur stock saisi à la main) est encore renseignée',
+            parRegroupement: countBy(typoAvantPremiere, p => p.agencyRegions),
+            // Détail repris dans les mails régionaux : la typo à supprimer, programme par programme.
+            programmes: typoAvantPremiere.map(p => ({
+                idProgram: p.idProgram, nom: p.programName || '', ville: p.city || '', statut: p.programStatus || '',
+                agencyRegions: p.agencyRegions || '', uuid: p.uuid || '', webLink: p.webLink || '',
+                typos: String(p.earlyAccessTypos).trim()
+            }))
         }
     ];
     for (const ind of indicateurs) {

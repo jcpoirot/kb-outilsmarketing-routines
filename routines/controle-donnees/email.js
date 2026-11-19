@@ -231,7 +231,24 @@ function diffusionTilesRg(report, rg) {
 function indicateursRg(report, rg) {
     const rows = report.indicateurs.map(i => `<tr>${td(esc(i.libelle))}`
         + td(cell(i.parRegroupement[rg] || 0, i.variationParRegroupement?.[rg] ?? null, lienIndicateur(i, rg)), 'center') + '</tr>');
-    return table(th('Indicateur') + th('Nombre', 'center'), rows);
+    return table(th('Indicateur') + th('Nombre', 'center'), rows) + typosAvantPremiereRg(report, rg);
+}
+
+// Programmes du regroupement qui portent encore une typo d'Avant-première (onglet 9 de l'App 5) :
+// liens Web et PIM, statut, typo à supprimer. Absent d'un rapport rejoué antérieur : rien.
+function typosAvantPremiereRg(report, rg) {
+    const ind = report.indicateurs.find(i => i.cle === 'typoAvantPremiere');
+    const liste = (ind?.programmes || []).filter(p => (p.agencyRegions || SANS_REGROUPEMENT) === rg)
+        .sort((x, y) => String(x.idProgram).localeCompare(String(y.idProgram), 'fr', { numeric: true }));
+    if (!liste.length) return '';
+    const rows = liste.map(p => `<tr>${td(celluleProgramme(p), 'left', 'width:34%')}`
+        + td(esc(p.statut || 'Sans statut'))
+        + td(`<span style="color:${COLORS.bad}">${esc(abrege(p.typos, 160))}</span>`) + '</tr>');
+    return `<h3 style="font-size:14px;margin:16px 0 4px">Typos en Avant-première à supprimer</h3>`
+        + `<p style="margin:0 0 6px;font-size:12px;color:${COLORS.muted}">Programmes sortis de l'Avant-première : leur stock réel prend le relais, `
+        + `la typo saisie à la main dans le PIM pendant l'Avant-première est à vider. `
+        + `${link(lienIndicateur(ind, rg === SANS_REGROUPEMENT ? '' : rg), 'Voir la liste dans outilsMarketing')}.</p>`
+        + `<div style="overflow-x:auto">${table(th('Programme') + th('Statut') + th('Typos en Avant-première à supprimer'), rows)}</div>`;
 }
 
 function descriptifsRg(report, rg, xlsxName) {

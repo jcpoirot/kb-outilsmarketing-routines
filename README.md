@@ -40,6 +40,7 @@ casse indifférents, le responsable peut changer sans toucher la config) :
   dans les données), est signalé en « Alerte » par `email.js` et `lire-regroupements.js`.
 - Fichiers : `AAAA-MM-JJ.<slug>.synthese.md` (historisé), `.email.html`, `.email.json`,
   `.descriptifs.xlsx` (slug : `ile-de-france`, `centre-est-nord-est-1`…).
+- Sous le tableau des problèmes de données, le mail régional liste les programmes dont la typo en Avant-première est à supprimer (onglet 9 de l'App 5) : liens Web et PIM, statut, typo saisie, lien vers l'onglet filtré sur le regroupement.
 - La répartition par état d'avancement n'existe que dans le mail général.
 
 ## Modes

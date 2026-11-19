@@ -52,6 +52,7 @@ const app5 = run('controleDonnees.html', { progPublishedFilter: 'published', lot
         sansHonoraires: getErrorProgsFees(getFilteredPrograms(4)),
         ecoules: getErrorProgsSoldOut(getFilteredPrograms(5)),
         sansZoneFiscale: getErrorProgsNoTaxZone(getFilteredPrograms(8)),
+        typoAvantPremiere: getErrorProgsEarlyTypos(getFilteredPrograms(9)),
         nonDiffuses: getPublicationIssues().map(e => e.lot),
         sansPlan: getLotsWithoutPlan()
     };`.replace('__data', JSON.stringify(data)));
@@ -70,7 +71,7 @@ for (const ind of r.indicateurs) {
         appCount = {};
         for (const [rg, progs] of Object.entries(app1)) appCount[rg === 'Sans région' ? 'Sans regroupement' : rg] = progs.reduce((s, p) => s + p.withoutImages, 0);
     } else {
-        const key = ['sansCharges', 'sansHonoraires', 'ecoules', 'sansZoneFiscale'].includes(ind.cle) ? (p => p.agencyRegions) : (l => l.agencyRegions);
+        const key = ['sansCharges', 'sansHonoraires', 'ecoules', 'sansZoneFiscale', 'typoAvantPremiere'].includes(ind.cle) ? (p => p.agencyRegions) : (l => l.agencyRegions);
         appCount = {};
         for (const x of app5[ind.cle]) { const k = key(x) || 'Sans regroupement'; appCount[k] = (appCount[k] || 0) + 1; }
     }
